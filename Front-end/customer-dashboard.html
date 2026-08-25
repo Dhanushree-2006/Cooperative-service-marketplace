@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customer Dashboard | CoopConnect AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+body{
+    background:#f4f8f5;
+    color:#173421;
+    min-height:100vh;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:70px;
+    background:#103b23;
+    color:white;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    width:40px;
+    height:40px;
+    background:white;
+    color:#166534;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo h2{
+    font-size:17px;
+}
+
+.logo span{
+    color:#8de9a4;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.user-name{
+    font-size:8px;
+}
+
+.logout{
+    border:1px solid rgba(255,255,255,.3);
+    background:transparent;
+    color:white;
+    border-radius:7px;
+    padding:8px 12px;
+    font-size:7px;
+    cursor:pointer;
+}
+
+.logout:hover{
+    background:rgba(255,255,255,.1);
+}
+
+/* LAYOUT */
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:30px auto;
+}
+
+/* WELCOME */
+
+.welcome{
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    font-size:23px;
+}
+
+.welcome p{
+    color:#667085;
+    font-size:8px;
+    margin-top:5px;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    border:1px solid #e0e8e2;
+    border-radius:12px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.stat-icon{
+    width:42px;
+    height:42px;
+    border-radius:9px;
+    background:#edf8f0;
+    color:#166534;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.stat h3{
+    font-size:18px;
+}
+
+.stat p{
+    font-size:7px;
+    color:#667085;
+}
+
+/* GRID */
+
+.main-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:20px;
+}
+
+/* CARD */
+
+.card{
+    background:white;
+    border:1px solid #e0e8e2;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:20px;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.card-header h2{
+    font-size:14px;
+}
+
+.card-header p{
+    font-size:7px;
+    color:#667085;
+}
+
+/* SERVICES */
+
+.services{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.service{
+    border:1px solid #dbe5de;
+    border-radius:10px;
+    padding:14px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.service:hover{
+    border-color:#166534;
+    transform:translateY(-2px);
+}
+
+.service.selected{
+    border-color:#166534;
+    background:#edf8f0;
+}
+
+.service i{
+    color:#166534;
+    font-size:17px;
+    margin-bottom:7px;
+}
+
+.service h3{
+    font-size:8px;
+}
+
+.service p{
+    color:#667085;
+    font-size:6px;
+    margin-top:3px;
+}
+
+/* BOOKING FORM */
+
+.form-group{
+    margin-bottom:13px;
+}
+
+label{
+    display:block;
+    font-size:7px;
+    font-weight:600;
+    margin-bottom:5px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #d2dcd5;
+    border-radius:8px;
+    height:39px;
+    padding:0 10px;
+    outline:none;
+    font-size:8px;
+    background:white;
+}
+
+textarea{
+    height:75px;
+    padding:10px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#166534;
+    box-shadow:0 0 0 3px rgba(22,101,52,.07);
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+
+.book-btn{
+    width:100%;
+    height:42px;
+    border:0;
+    border-radius:8px;
+    background:#166534;
+    color:white;
+    font-size:8px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.book-btn:hover{
+    background:#0f5429;
+}
+
+/* BOOKINGS */
+
+.booking{
+    border:1px solid #e1e8e3;
+    border-radius:9px;
+    padding:13px;
+    margin-bottom:10px;
+}
+
+.booking:last-child{
+    margin-bottom:0;
+}
+
+.booking-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.booking-title{
+    font-size:8px;
+    font-weight:600;
+}
+
+.status{
+    font-size:6px;
+    padding:4px 7px;
+    border-radius:20px;
+}
+
+.status.pending{
+    background:#fff4d6;
+    color:#8a5b00;
+}
+
+.status.accepted{
+    background:#e7f5ff;
+    color:#1261a0;
+}
+
+.status.completed{
+    background:#eaf8ee;
+    color:#087443;
+}
+
+.status.cancelled{
+    background:#fff0f0;
+    color:#b42318;
+}
+
+.booking-info{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:5px;
+    margin-top:9px;
+}
+
+.booking-info span{
+    font-size:6px;
+    color:#667085;
+}
+
+.empty{
+    text-align:center;
+    padding:25px 10px;
+    color:#8a9690;
+    font-size:7px;
+}
+
+/* MESSAGE */
+
+.message{
+    display:none;
+    padding:9px;
+    border-radius:7px;
+    font-size:7px;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.message.success{
+    display:block;
+    color:#087443;
+    background:#eaf8ee;
+    border:1px solid #ccebd5;
+}
+
+.message.error{
+    display:block;
+    color:#b42318;
+    background:#fff0f0;
+    border:1px solid #ffd5d5;
+}
+
+/* FOOTER */
+
+footer{
+    margin-top:30px;
+    background:#0b2c1a;
+    padding:20px;
+}
+
+footer p{
+    text-align:center;
+    color:#9eb8a7;
+    font-size:6px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .main-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .services{
+        grid-template-columns:1fr;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .nav-right .user-name{
+        display:none;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            <i class="fa-solid fa-handshake"></i>
+        </div>
+
+        <h2>
+            CoopConnect <span>AI</span>
+        </h2>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <span
+            class="user-name"
+            id="userName">
+            Customer
+        </span>
+
+        <button
+            class="logout"
+            onclick="logout()">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <h1 id="welcomeTitle">
+            Welcome!
+        </h1>
+
+        <p>
+            Find trusted cooperative workers for your home and institution.
+        </p>
+
+    </section>
+
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+
+            <div>
+                <h3 id="totalBookings">0</h3>
+                <p>Total Bookings</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <div>
+                <h3 id="pendingBookings">0</h3>
+                <p>Pending Bookings</p>
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <h3 id="completedBookings">0</h3>
+                <p>Completed</p>
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- MAIN GRID -->
+
+    <div class="main-grid">
+
+
+        <!-- LEFT -->
+
+        <div>
+
+
+            <!-- SERVICES -->
+
+            <section class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Book a Service
+                        </h2>
+
+                        <p>
+                            Select the service you need
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="services"
+                    id="services">
+
+
+                    <div
+                        class="service"
+                        data-service="Electrician"
+                        onclick="selectService(this)">
+
+                        <i class="fa-solid fa-bolt"></i>
+
+                        <h3>
+                            Electrician
+                        </h3>
+
+                        <p>
+                            Electrical repairs & installation
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="service"
+                        data-service="Plumber"
+                        onclick="selectService(this)">
+
+                        <i class="fa-solid fa-faucet-drip"></i>
+
+                        <h3>
+                            Plumber
+                        </h3>
+
+                        <p>
+                            Plumbing & water repairs
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="service"
+                        data-service="Carpenter"
+                        onclick="selectService(this)">
+
+                        <i class="fa-solid fa-hammer"></i>
+
+                        <h3>
+                            Carpenter
+                        </h3>
+
+                        <p>
+                            Furniture & woodwork
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="service"
+                        data-service="Painter"
+                        onclick="selectService(this)">
+
+                        <i class="fa-solid fa-paint-roller"></i>
+
+                        <h3>
+                            Painter
+                        </h3>
+
+                        <p>
+                            Interior & exterior painting
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="service"
+                        data-service="Cleaner"
+                        onclick="selectService(this)">
+
+                        <i class="fa-solid fa-broom"></i>
+
+                        <h3>
+                            Cleaner
+                        </h3>
+
+                        <p>
+                            Home & office cleaning
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="service"
+                        data-service="Driver"
+                        onclick="selectService(this)">
+
+                        <i class="fa-solid fa-car"></i>
+
+                        <h3>
+                            Driver
+                        </h3>
+
+                        <p>
+                            Personal & commercial driving
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="service"
+                        data-service="Caregiver"
+                        onclick="selectService(this)">
+
+                        <i class="fa-solid fa-heart"></i>
+
+                        <h3>
+                            Caregiver
+                        </h3>
+
+                        <p>
+                            Personal care assistance
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="service"
+                        data-service="Gardener"
+                        onclick="selectService(this)">
+
+                        <i class="fa-solid fa-seedling"></i>
+
+                        <h3>
+                            Gardener
+                        </h3>
+
+                        <p>
+                            Garden maintenance
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- BOOKING FORM -->
+
+            <section class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Booking Details
+                        </h2>
+
+                        <p>
+                            Tell us when and where you need the service
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="message"
+                    class="message">
+                </div>
+
+
+                <form
+                    id="bookingForm"
+                    onsubmit="createBooking(event)">
+
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Service
+                            </label>
+
+                            <select
+                                id="bookingService"
+                                required>
+
+                                <option value="">
+                                    Select a service
+                                </option>
+
+                                <option>Electrician</option>
+                                <option>Plumber</option>
+                                <option>Carpenter</option>
+                                <option>Painter</option>
+                                <option>Cleaner</option>
+                                <option>Driver</option>
+                                <option>Caregiver</option>
+                                <option>Gardener</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Preferred Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="bookingDate"
+                                required>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Preferred Time
+                            </label>
+
+                            <input
+                                type="time"
+                                id="bookingTime"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Location
+                            </label>
+
+                            <input
+                                type="text"
+                                id="bookingLocation"
+                                placeholder="Service address"
+                                required>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Additional Details
+                        </label>
+
+                        <textarea
+                            id="bookingDetails"
+                            placeholder="Describe the work you need..."></textarea>
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="book-btn">
+
+                        <i class="fa-solid fa-calendar-plus"></i>
+
+                        Request Service
+
+                    </button>
+
+
+                </form>
+
+            </section>
+
+
+        </div>
+
+
+
+        <!-- RIGHT -->
+
+        <div>
+
+
+            <!-- RECENT BOOKINGS -->
+
+            <section class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            My Bookings
+                        </h2>
+
+                        <p>
+                            Recent service requests
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div id="bookingsList">
+
+                    <div class="empty">
+
+                        <i class="fa-solid fa-calendar-xmark"></i>
+
+                        <br><br>
+
+                        No bookings yet.
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        © 2026 CoopConnect AI — Empowering Cooperative Workers
+    </p>
+
+</footer>
+
+
+
+<script>
+
+/* ==================================================
+   CHECK LOGIN
+================================================== */
+
+const loggedIn =
+    localStorage.getItem(
+        "coopconnectLoggedIn"
+    );
+
+const role =
+    localStorage.getItem(
+        "coopconnectRole"
+    );
+
+
+if(
+    loggedIn !== "true" ||
+    role !== "customer"
+){
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* ==================================================
+   USER DATA
+================================================== */
+
+const userEmail =
+    localStorage.getItem(
+        "coopconnectUserEmail"
+    ) || "customer@example.com";
+
+
+const userName =
+    localStorage.getItem(
+        "coopconnectUserName"
+    ) || "Customer";
+
+
+document.getElementById(
+    "userName"
+).innerText = userName;
+
+
+document.getElementById(
+    "welcomeTitle"
+).innerText =
+    "Welcome, " + userName + "!";
+
+
+
+/* ==================================================
+   DATE
+================================================== */
+
+const dateInput =
+    document.getElementById(
+        "bookingDate"
+    );
+
+
+const today =
+    new Date();
+
+
+const year =
+    today.getFullYear();
+
+
+const month =
+    String(
+        today.getMonth()+1
+    ).padStart(2,"0");
+
+
+const day =
+    String(
+        today.getDate()
+    ).padStart(2,"0");
+
+
+dateInput.min =
+    `${year}-${month}-${day}`;
+
+
+
+/* ==================================================
+   SELECT SERVICE
+================================================== */
+
+function selectService(element){
+
+    document
+        .querySelectorAll(".service")
+        .forEach(function(item){
+
+            item.classList.remove(
+                "selected"
+            );
+
+        });
+
+
+    element.classList.add(
+        "selected"
+    );
+
+
+    const service =
+        element.dataset.service;
+
+
+    document.getElementById(
+        "bookingService"
+    ).value =
+        service;
+
+}
+
+
+
+/* ==================================================
+   CREATE BOOKING
+================================================== */
+
+function createBooking(event){
+
+    event.preventDefault();
+
+
+    const service =
+        document.getElementById(
+            "bookingService"
+        ).value;
+
+
+    const date =
+        document.getElementById(
+            "bookingDate"
+        ).value;
+
+
+    const time =
+        document.getElementById(
+            "bookingTime"
+        ).value;
+
+
+    const location =
+        document.getElementById(
+            "bookingLocation"
+        ).value.trim();
+
+
+    const details =
+        document.getElementById(
+            "bookingDetails"
+        ).value.trim();
+
+
+    if(!service){
+
+        showMessage(
+            "Please select a service.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /* GET BOOKINGS */
+
+    let bookings = [];
+
+
+    try{
+
+        bookings =
+            JSON.parse(
+                localStorage.getItem(
+                    "coopconnectBookings"
+                )
+            ) || [];
+
+    }
+    catch(error){
+
+        bookings = [];
+
+    }
+
+
+    /* CREATE BOOKING */
+
+    const booking = {
+
+        id:
+            "B" +
+            Date.now(),
+
+        customerEmail:
+            userEmail,
+
+        customerName:
+            userName,
+
+        service:
+            service,
+
+        date:
+            date,
+
+        time:
+            time,
+
+        location:
+            location,
+
+        details:
+            details,
+
+        workerEmail:
+            "",
+
+        workerName:
+            "",
+
+        status:
+            "Pending",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    bookings.push(
+        booking
+    );
+
+
+    localStorage.setItem(
+        "coopconnectBookings",
+        JSON.stringify(
+            bookings
+        )
+    );
+
+
+    showMessage(
+        "Service request created successfully!",
+        "success"
+    );
+
+
+    document
+        .getElementById(
+            "bookingForm"
+        )
+        .reset();
+
+
+    document
+        .querySelectorAll(".service")
+        .forEach(function(item){
+
+            item.classList.remove(
+                "selected"
+            );
+
+        });
+
+
+    loadBookings();
+
+}
+
+
+
+/* ==================================================
+   LOAD BOOKINGS
+================================================== */
+
+function loadBookings(){
+
+    let bookings = [];
+
+
+    try{
+
+        bookings =
+            JSON.parse(
+                localStorage.getItem(
+                    "coopconnectBookings"
+                )
+            ) || [];
+
+    }
+    catch(error){
+
+        bookings = [];
+
+    }
+
+
+    const myBookings =
+        bookings.filter(function(booking){
+
+            return (
+                booking.customerEmail ===
+                userEmail
+            );
+
+        });
+
+
+    updateStats(
+        myBookings
+    );
+
+
+    const list =
+        document.getElementById(
+            "bookingsList"
+        );
+
+
+    if(
+        myBookings.length === 0
+    ){
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                <i class="fa-solid fa-calendar-xmark"></i>
+
+                <br><br>
+
+                No bookings yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /*
+       Newest bookings first
+    */
+
+    myBookings.reverse();
+
+
+    list.innerHTML =
+        myBookings.map(function(booking){
+
+            return `
+
+                <div class="booking">
+
+                    <div class="booking-top">
+
+                        <div class="booking-title">
+
+                            ${escapeHTML(
+                                booking.service
+                            )}
+
+                        </div>
+
+                        <span class="status ${getStatusClass(
+                            booking.status
+                        )}">
+
+                            ${escapeHTML(
+                                booking.status
+                            )}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="booking-info">
+
+                        <span>
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            ${escapeHTML(
+                                booking.date
+                            )}
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="fa-regular fa-clock"></i>
+
+                            ${escapeHTML(
+                                booking.time
+                            )}
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            ${escapeHTML(
+                                booking.location
+                            )}
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="fa-solid fa-user-gear"></i>
+
+                            ${
+                                booking.workerName
+                                ?
+                                escapeHTML(
+                                    booking.workerName
+                                )
+                                :
+                                "Worker not assigned"
+                            }
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        })
+        .join("");
+
+}
+
+
+
+/* ==================================================
+   UPDATE STATS
+================================================== */
+
+function updateStats(bookings){
+
+    const total =
+        bookings.length;
+
+
+    const pending =
+        bookings.filter(function(booking){
+
+            return (
+                booking.status ===
+                "Pending"
+            );
+
+        }).length;
+
+
+    const completed =
+        bookings.filter(function(booking){
+
+            return (
+                booking.status ===
+                "Completed"
+            );
+
+        }).length;
+
+
+    document.getElementById(
+        "totalBookings"
+    ).innerText =
+        total;
+
+
+    document.getElementById(
+        "pendingBookings"
+    ).innerText =
+        pending;
+
+
+    document.getElementById(
+        "completedBookings"
+    ).innerText =
+        completed;
+
+}
+
+
+
+/* ==================================================
+   STATUS CLASS
+================================================== */
+
+function getStatusClass(status){
+
+    if(status === "Accepted"){
+        return "accepted";
+    }
+
+    if(status === "Completed"){
+        return "completed";
+    }
+
+    if(status === "Cancelled"){
+        return "cancelled";
+    }
+
+    return "pending";
+
+}
+
+
+
+/* ==================================================
+   MESSAGE
+================================================== */
+
+function showMessage(
+    text,
+    type
+){
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.innerText =
+        text;
+
+
+    message.className =
+        "message " + type;
+
+
+    setTimeout(function(){
+
+        message.className =
+            "message";
+
+    },4000);
+
+}
+
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+function logout(){
+
+    localStorage.removeItem(
+        "coopconnectLoggedIn"
+    );
+
+    localStorage.removeItem(
+        "coopconnectRole"
+    );
+
+    localStorage.removeItem(
+        "coopconnectUserEmail"
+    );
+
+    localStorage.removeItem(
+        "coopconnectUserName"
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+
+/* ==================================================
+   INITIAL LOAD
+================================================== */
+
+loadBookings();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | CoopConnect AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+body{
+    background:#f5f8f6;
+    color:#173421;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:70px;
+    background:#103b23;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.logo-icon{
+    width:40px;
+    height:40px;
+    background:white;
+    color:#166534;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo h2{
+    font-size:17px;
+}
+
+.logo span{
+    color:#8de9a4;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:#dcebe0;
+    text-decoration:none;
+    font-size:8px;
+}
+
+.logout{
+    color:white;
+    text-decoration:none;
+    border:1px solid #769782;
+    padding:8px 13px;
+    border-radius:7px;
+    font-size:8px;
+}
+
+/* MAIN */
+
+.dashboard{
+    width:88%;
+    max-width:1250px;
+    margin:35px auto;
+}
+
+.heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.heading h1{
+    font-size:24px;
+}
+
+.heading p{
+    color:#667085;
+    font-size:8px;
+    margin-top:4px;
+}
+
+.admin-badge{
+    background:#eaf8ee;
+    color:#087443;
+    padding:9px 13px;
+    border-radius:20px;
+    font-size:7px;
+    font-weight:600;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    border:1px solid #e0e7e2;
+    border-radius:12px;
+    padding:17px;
+}
+
+.stat-icon{
+    width:37px;
+    height:37px;
+    background:#edf8f0;
+    color:#166534;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:10px;
+}
+
+.stat h2{
+    font-size:19px;
+}
+
+.stat p{
+    color:#667085;
+    font-size:7px;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+}
+
+/* CARD */
+
+.card{
+    background:white;
+    border:1px solid #e0e7e2;
+    border-radius:13px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+}
+
+.card-header h2{
+    font-size:13px;
+}
+
+.card-header span{
+    font-size:7px;
+    color:#667085;
+}
+
+/* TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#f7faf8;
+    text-align:left;
+    color:#667085;
+    font-size:6px;
+    padding:10px;
+}
+
+td{
+    padding:11px 10px;
+    border-bottom:1px solid #edf0ee;
+    font-size:7px;
+}
+
+.status{
+    padding:5px 8px;
+    border-radius:12px;
+    font-size:6px;
+    font-weight:600;
+}
+
+.pending{
+    background:#fff7df;
+    color:#9a6700;
+}
+
+.approved{
+    background:#e9f8ee;
+    color:#087443;
+}
+
+.rejected{
+    background:#ffeded;
+    color:#b42318;
+}
+
+.action-btn{
+    border:1px solid #d1dad3;
+    background:white;
+    border-radius:6px;
+    padding:5px 8px;
+    font-size:6px;
+    cursor:pointer;
+}
+
+.action-btn.approve{
+    background:#166534;
+    color:white;
+    border-color:#166534;
+}
+
+.action-btn.reject{
+    color:#b42318;
+}
+
+/* VERIFICATION */
+
+.verification{
+    border:1px solid #e3e9e5;
+    border-radius:9px;
+    padding:12px;
+    margin-bottom:10px;
+}
+
+.verification:last-child{
+    margin-bottom:0;
+}
+
+.verification-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.worker{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.worker-avatar{
+    width:35px;
+    height:35px;
+    background:#e3f3e7;
+    color:#166534;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.worker h3{
+    font-size:8px;
+}
+
+.worker p{
+    font-size:6px;
+    color:#667085;
+}
+
+.verify-actions{
+    display:flex;
+    gap:5px;
+    margin-top:10px;
+}
+
+/* SERVICE */
+
+.service{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #edf0ee;
+}
+
+.service:last-child{
+    border-bottom:none;
+}
+
+.service-icon{
+    width:35px;
+    height:35px;
+    background:#edf8f0;
+    color:#166534;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.service-info{
+    flex:1;
+}
+
+.service-info h3{
+    font-size:8px;
+}
+
+.service-info p{
+    color:#667085;
+    font-size:6px;
+}
+
+/* QUICK ACTIONS */
+
+.quick{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px 0;
+    border-bottom:1px solid #edf0ee;
+    cursor:pointer;
+}
+
+.quick:last-child{
+    border-bottom:none;
+}
+
+.quick-icon{
+    width:34px;
+    height:34px;
+    background:#edf8f0;
+    color:#166534;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.quick span{
+    font-size:7px;
+}
+
+.quick i:last-child{
+    margin-left:auto;
+    color:#98a49c;
+    font-size:7px;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    align-items:center;
+    justify-content:center;
+    z-index:3000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    width:90%;
+    max-width:430px;
+    border-radius:14px;
+    padding:24px;
+}
+
+.modal-box h2{
+    font-size:15px;
+    margin-bottom:10px;
+}
+
+.modal-box p{
+    color:#667085;
+    font-size:8px;
+    line-height:1.7;
+}
+
+.close{
+    float:right;
+    border:none;
+    background:#f1f3f2;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:20px;
+}
+
+.modal-actions button{
+    padding:8px 13px;
+    border-radius:6px;
+    border:1px solid #d1d9d3;
+    background:white;
+    font-size:7px;
+    cursor:pointer;
+}
+
+.modal-actions .green{
+    background:#166534;
+    color:white;
+    border-color:#166534;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0b2c1a;
+    color:white;
+    padding:25px 7%;
+    margin-top:50px;
+}
+
+footer p{
+    text-align:center;
+    color:#9eb8a7;
+    font-size:7px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1050px){
+
+    .stats{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:850px){
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .heading{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            <i class="fa-solid fa-handshake"></i>
+        </div>
+
+        <h2>
+            CoopConnect <span>AI</span>
+        </h2>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="services.html">
+            Services
+        </a>
+
+        <a href="admin-dashboard.html">
+            Admin
+        </a>
+
+    </div>
+
+
+    <a
+        href="login.html"
+        class="logout">
+
+        Logout
+
+    </a>
+
+</nav>
+
+
+
+<main class="dashboard">
+
+
+<!-- HEADING -->
+
+<section class="heading">
+
+    <div>
+
+        <h1>
+            Admin Dashboard
+        </h1>
+
+        <p>
+            Monitor cooperative workers, customers and service bookings.
+        </p>
+
+    </div>
+
+    <div class="admin-badge">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        Administrator
+
+    </div>
+
+</section>
+
+
+
+<!-- STATS -->
+
+<section class="stats">
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-users"></i>
+        </div>
+
+        <h2 id="customers">
+            0
+        </h2>
+
+        <p>
+            Customers
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-user-gear"></i>
+        </div>
+
+        <h2 id="workers">
+            0
+        </h2>
+
+        <p>
+            Workers
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-calendar-check"></i>
+        </div>
+
+        <h2 id="bookings">
+            0
+        </h2>
+
+        <p>
+            Bookings
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-clock"></i>
+        </div>
+
+        <h2 id="pending">
+            0
+        </h2>
+
+        <p>
+            Pending
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+        </div>
+
+        <h2 id="revenue">
+            ₹0
+        </h2>
+
+        <p>
+            Revenue
+        </p>
+
+    </div>
+
+
+</section>
+
+
+
+<div class="grid">
+
+
+<!-- LEFT -->
+
+<section>
+
+
+    <!-- BOOKINGS -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                Recent Bookings
+            </h2>
+
+            <span id="bookingCount">
+                0 bookings
+            </span>
+
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            SERVICE
+                        </th>
+
+                        <th>
+                            WORKER
+                        </th>
+
+                        <th>
+                            DATE
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="bookingTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- WORKER VERIFICATION -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                Worker Verification
+            </h2>
+
+            <span>
+                Admin review
+            </span>
+
+        </div>
+
+
+        <div id="verificationList">
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- RIGHT -->
+
+<aside>
+
+
+    <!-- PLATFORM SUMMARY -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                Platform Summary
+            </h2>
+
+        </div>
+
+
+        <div class="service">
+
+            <div class="service-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <div class="service-info">
+
+                <h3>
+                    Electrician
+                </h3>
+
+                <p>
+                    24 registered workers
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="service">
+
+            <div class="service-icon">
+                <i class="fa-solid fa-faucet-drip"></i>
+            </div>
+
+            <div class="service-info">
+
+                <h3>
+                    Plumber
+                </h3>
+
+                <p>
+                    18 registered workers
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="service">
+
+            <div class="service-icon">
+                <i class="fa-solid fa-hammer"></i>
+            </div>
+
+            <div class="service-info">
+
+                <h3>
+                    Carpenter
+                </h3>
+
+                <p>
+                    15 registered workers
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="service">
+
+            <div class="service-icon">
+                <i class="fa-solid fa-broom"></i>
+            </div>
+
+            <div class="service-info">
+
+                <h3>
+                    Cleaning
+                </h3>
+
+                <p>
+                    31 registered workers
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                Quick Actions
+            </h2>
+
+        </div>
+
+
+        <div
+            class="quick"
+            onclick="showMessage('Add Worker')">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+            </div>
+
+            <span>
+                Add Worker
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+
+
+        <div
+            class="quick"
+            onclick="showMessage('Manage Services')">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-list-check"></i>
+
+            </div>
+
+            <span>
+                Manage Services
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+
+
+        <div
+            class="quick"
+            onclick="showMessage('Reports')">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+            </div>
+
+            <span>
+                Generate Reports
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+
+
+        <div
+            class="quick"
+            onclick="showMessage('Settings')">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-gear"></i>
+
+            </div>
+
+            <span>
+                Platform Settings
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+
+
+    </div>
+
+
+</aside>
+
+
+</div>
+
+</main>
+
+
+
+<!-- MODAL -->
+
+<div
+    class="modal"
+    id="messageModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal()">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <h2 id="modalTitle">
+            Admin Action
+        </h2>
+
+        <p id="modalText">
+            This feature will be connected to the administrator backend.
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                class="green"
+                onclick="closeModal()">
+
+                Continue
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<footer>
+
+    <p>
+        © 2026 CoopConnect AI — Cooperative Service Management Platform
+    </p>
+
+</footer>
+
+
+
+<script>
+
+/* =========================
+BOOKINGS
+========================= */
+
+let bookings =
+    JSON.parse(
+        localStorage.getItem(
+            "coopconnectBookings"
+        )
+    ) || [];
+
+
+/* =========================
+LOAD DASHBOARD
+========================= */
+
+function loadDashboard(){
+
+    const table =
+        document.getElementById(
+            "bookingTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    document
+        .getElementById(
+            "bookings"
+        )
+        .innerText =
+        bookings.length;
+
+
+    const pending =
+        bookings.filter(
+            b =>
+                !b.status ||
+                b.status === "Pending"
+        ).length;
+
+
+    document
+        .getElementById(
+            "pending"
+        )
+        .innerText =
+        pending;
+
+
+    /*
+       Demo revenue:
+       ₹500 for every completed booking.
+    */
+
+    const completed =
+        bookings.filter(
+            b =>
+                b.status === "Completed"
+        ).length;
+
+
+    const revenue =
+        completed * 500;
+
+
+    document
+        .getElementById(
+            "revenue"
+        )
+        .innerText =
+        "₹" + revenue;
+
+
+    document
+        .getElementById(
+            "bookingCount"
+        )
+        .innerText =
+        bookings.length +
+        (bookings.length === 1
+            ? " booking"
+            : " bookings");
+
+
+    if(bookings.length === 0){
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="6"
+                    style="
+                        text-align:center;
+                        padding:35px;
+                        color:#667085;
+                    ">
+
+                    No bookings available.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+
+    bookings
+        .slice()
+        .reverse()
+        .forEach(
+            booking => {
+
+                const row =
+                    document.createElement(
+                        "tr"
+                    );
+
+
+                let statusClass =
+                    "pending";
+
+
+                if(
+                    booking.status ===
+                    "Confirmed"
+                ){
+
+                    statusClass =
+                        "approved";
+
+                }
+
+
+                if(
+                    booking.status ===
+                    "Completed"
+                ){
+
+                    statusClass =
+                        "approved";
+
+                }
+
+
+                if(
+                    booking.status ===
+                    "Cancelled"
+                ){
+
+                    statusClass =
+                        "rejected";
+
+                }
+
+
+                row.innerHTML = `
+
+                    <td>
+                        ${escapeHTML(booking.id)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(booking.service)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(booking.worker)}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(booking.date)}
+                    </td>
+
+                    <td>
+
+                        <span class="status ${statusClass}">
+
+                            ${escapeHTML(
+                                booking.status ||
+                                "Pending"
+                            )}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="action-btn"
+                            onclick="viewBooking('${booking.id}')">
+
+                            View
+
+                        </button>
+
+                    </td>
+
+                `;
+
+
+                table.appendChild(
+                    row
+                );
+
+            }
+        );
+
+
+    loadWorkers();
+
+}
+
+
+/* =========================
+WORKERS
+========================= */
+
+let workers =
+    JSON.parse(
+        localStorage.getItem(
+            "coopconnectWorkers"
+        )
+    ) || [
+
+        {
+            id:"W001",
+            name:"Ravi Kumar",
+            service:"Electrician",
+            status:"Pending"
+        },
+
+        {
+            id:"W002",
+            name:"Suresh Babu",
+            service:"Plumber",
+            status:"Pending"
+        },
+
+        {
+            id:"W003",
+            name:"Meena Devi",
+            service:"Cleaning",
+            status:"Approved"
+        }
+
+    ];
+
+
+function loadWorkers(){
+
+    const list =
+        document.getElementById(
+            "verificationList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    const pending =
+        workers.filter(
+            w =>
+                w.status ===
+                "Pending"
+        );
+
+
+    if(pending.length === 0){
+
+        list.innerHTML = `
+
+            <div style="
+                text-align:center;
+                padding:25px;
+                color:#667085;
+                font-size:7px;
+            ">
+
+                No workers awaiting verification.
+
+            </div>
+
+        `;
+
+        updateWorkerCount();
+
+        return;
+
+    }
+
+
+    pending.forEach(
+        worker => {
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "verification";
+
+
+            div.innerHTML = `
+
+                <div class="verification-top">
+
+                    <div class="worker">
+
+                        <div class="worker-avatar">
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                ${escapeHTML(worker.name)}
+                            </h3>
+
+                            <p>
+                                ${escapeHTML(worker.service)}
+                                • ${escapeHTML(worker.id)}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="status pending">
+
+                        Pending
+
+                    </span>
+
+                </div>
+
+
+                <div class="verify-actions">
+
+                    <button
+                        class="action-btn approve"
+                        onclick="approveWorker('${worker.id}')">
+
+                        Approve
+
+                    </button>
+
+
+                    <button
+                        class="action-btn reject"
+                        onclick="rejectWorker('${worker.id}')">
+
+                        Reject
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            list.appendChild(
+                div
+            );
+
+        }
+    );
+
+
+    updateWorkerCount();
+
+}
+
+
+/* =========================
+WORKER COUNT
+========================= */
+
+function updateWorkerCount(){
+
+    document
+        .getElementById(
+            "workers"
+        )
+        .innerText =
+        workers.length;
+
+
+    document
+        .getElementById(
+            "customers"
+        )
+        .innerText =
+        getCustomerCount();
+
+}
+
+
+/* =========================
+CUSTOMERS
+========================= */
+
+function getCustomerCount(){
+
+    /*
+       Demo customer count.
+       Later this will come from backend.
+    */
+
+    const saved =
+        localStorage.getItem(
+            "coopconnectCustomers"
+        );
+
+
+    if(saved){
+
+        return JSON.parse(
+            saved
+        ).length;
+
+    }
+
+
+    return bookings.length > 0
+        ? bookings.length
+        : 0;
+
+}
+
+
+/* =========================
+APPROVE WORKER
+========================= */
+
+function approveWorker(id){
+
+    const index =
+        workers.findIndex(
+            w => w.id === id
+        );
+
+
+    if(index === -1)
+        return;
+
+
+    workers[index].status =
+        "Approved";
+
+
+    localStorage.setItem(
+        "coopconnectWorkers",
+        JSON.stringify(
+            workers
+        )
+    );
+
+
+    loadWorkers();
+
+}
+
+
+/* =========================
+REJECT WORKER
+========================= */
+
+function rejectWorker(id){
+
+    const index =
+        workers.findIndex(
+            w => w.id === id
+        );
+
+
+    if(index === -1)
+        return;
+
+
+    workers[index].status =
+        "Rejected";
+
+
+    localStorage.setItem(
+        "coopconnectWorkers",
+        JSON.stringify(
+            workers
+        )
+    );
+
+
+    loadWorkers();
+
+}
+
+
+/* =========================
+VIEW BOOKING
+========================= */
+
+function viewBooking(id){
+
+    const booking =
+        bookings.find(
+            b => b.id === id
+        );
+
+
+    if(!booking)
+        return;
+
+
+    document
+        .getElementById(
+            "modalTitle"
+        )
+        .innerText =
+        "Booking " +
+        booking.id;
+
+
+    document
+        .getElementById(
+            "modalText"
+        )
+        .innerHTML = `
+
+            <strong>
+                Service:
+            </strong>
+            ${escapeHTML(booking.service)}
+
+            <br>
+
+            <strong>
+                Worker:
+            </strong>
+            ${escapeHTML(booking.worker)}
+
+            <br>
+
+            <strong>
+                Date:
+            </strong>
+            ${escapeHTML(booking.date)}
+
+            <br>
+
+            <strong>
+                Time:
+            </strong>
+            ${escapeHTML(booking.time)}
+
+            <br>
+
+            <strong>
+                Address:
+            </strong>
+            ${escapeHTML(booking.address)}
+
+            <br>
+
+            <strong>
+                Status:
+            </strong>
+            ${escapeHTML(
+                booking.status ||
+                "Pending"
+            )}
+
+        `;
+
+
+    document
+        .getElementById(
+            "messageModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+/* =========================
+QUICK ACTION
+========================= */
+
+function showMessage(title){
+
+    document
+        .getElementById(
+            "modalTitle"
+        )
+        .innerText =
+        title;
+
+
+    document
+        .getElementById(
+            "modalText"
+        )
+        .innerText =
+        title +
+        " will be connected to the administrator backend in the next development stage.";
+
+
+    document
+        .getElementById(
+            "messageModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+/* =========================
+CLOSE
+========================= */
+
+function closeModal(){
+
+    document
+        .getElementById(
+            "messageModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* =========================
+SAFE HTML
+========================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================
+START
+========================= */
+
+loadDashboard();
+
+</script>
+
+</body>
+
+</html>

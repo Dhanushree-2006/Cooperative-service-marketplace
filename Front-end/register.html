@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register | CoopConnect AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#f3f8f5;
+    color:#173421;
+    display:flex;
+    flex-direction:column;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:70px;
+    background:#103b23;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.logo-icon{
+    width:40px;
+    height:40px;
+    background:white;
+    color:#166534;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo h2{
+    font-size:17px;
+}
+
+.logo span{
+    color:#8de9a4;
+}
+
+.home-link{
+    color:#dcebe0;
+    text-decoration:none;
+    font-size:8px;
+}
+
+/* MAIN */
+
+.register-section{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    padding:35px 20px;
+}
+
+.register-box{
+    width:100%;
+    max-width:500px;
+    background:white;
+    border:1px solid #dfe8e2;
+    border-radius:16px;
+    padding:30px;
+    box-shadow:0 12px 35px rgba(16,59,35,.08);
+}
+
+.title{
+    text-align:center;
+    margin-bottom:22px;
+}
+
+.title h1{
+    font-size:22px;
+}
+
+.title p{
+    color:#667085;
+    font-size:8px;
+    margin-top:5px;
+}
+
+/* ROLE */
+
+.role-title{
+    font-size:8px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.roles{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.role{
+    border:1px solid #d6dfd9;
+    border-radius:9px;
+    padding:12px;
+    cursor:pointer;
+    text-align:center;
+}
+
+.role i{
+    font-size:17px;
+    color:#166534;
+    margin-bottom:5px;
+}
+
+.role p{
+    font-size:7px;
+}
+
+.role.active{
+    background:#edf8f0;
+    border-color:#166534;
+}
+
+/* FORM */
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.form-group{
+    margin-bottom:14px;
+}
+
+label{
+    display:block;
+    font-size:7px;
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+.input-box{
+    position:relative;
+}
+
+.input-box i{
+    position:absolute;
+    left:11px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#7b8a80;
+    font-size:8px;
+}
+
+.input-box input,
+.input-box select{
+    width:100%;
+    height:40px;
+    border:1px solid #d2dcd5;
+    border-radius:8px;
+    outline:none;
+    padding:0 12px 0 34px;
+    font-size:8px;
+    background:white;
+}
+
+.input-box input:focus,
+.input-box select:focus{
+    border-color:#166534;
+    box-shadow:0 0 0 3px rgba(22,101,52,.08);
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box input{
+    padding-right:35px;
+}
+
+.toggle{
+    position:absolute !important;
+    left:auto !important;
+    right:11px;
+    cursor:pointer;
+}
+
+/* TERMS */
+
+.terms{
+    display:flex;
+    align-items:flex-start;
+    gap:7px;
+    margin:4px 0 17px;
+}
+
+.terms input{
+    margin-top:2px;
+    accent-color:#166534;
+}
+
+.terms label{
+    font-size:6px;
+    font-weight:400;
+    color:#667085;
+    line-height:1.6;
+}
+
+.terms a{
+    color:#166534;
+    text-decoration:none;
+}
+
+/* BUTTON */
+
+.register-btn{
+    width:100%;
+    height:42px;
+    border:none;
+    border-radius:8px;
+    background:#166534;
+    color:white;
+    font-size:8px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.register-btn:hover{
+    background:#0f5429;
+}
+
+/* MESSAGE */
+
+.message{
+    display:none;
+    padding:9px;
+    border-radius:7px;
+    margin-bottom:15px;
+    font-size:7px;
+    text-align:center;
+}
+
+.message.error{
+    display:block;
+    background:#fff0f0;
+    color:#b42318;
+    border:1px solid #ffd5d5;
+}
+
+.message.success{
+    display:block;
+    background:#eaf8ee;
+    color:#087443;
+    border:1px solid #ccebd5;
+}
+
+/* LOGIN */
+
+.login{
+    text-align:center;
+    margin-top:17px;
+    color:#667085;
+    font-size:7px;
+}
+
+.login a{
+    color:#166534;
+    font-weight:600;
+    text-decoration:none;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0b2c1a;
+    padding:20px;
+}
+
+footer p{
+    color:#9eb8a7;
+    text-align:center;
+    font-size:6px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .form-row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+
+            <i class="fa-solid fa-handshake"></i>
+
+        </div>
+
+        <h2>
+            CoopConnect <span>AI</span>
+        </h2>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="home-link">
+
+        <i class="fa-solid fa-house"></i>
+        Home
+
+    </a>
+
+</nav>
+
+
+
+<!-- REGISTER -->
+
+<section class="register-section">
+
+<div class="register-box">
+
+
+    <div class="title">
+
+        <h1>
+            Create Your Account
+        </h1>
+
+        <p>
+            Join the CoopConnect cooperative service network
+        </p>
+
+    </div>
+
+
+    <!-- ROLE -->
+
+    <div class="role-title">
+        Register as
+    </div>
+
+
+    <div class="roles">
+
+
+        <div
+            class="role active"
+            id="customerRole"
+            onclick="selectRole('customer')">
+
+            <i class="fa-solid fa-user"></i>
+
+            <p>
+                Customer
+            </p>
+
+        </div>
+
+
+        <div
+            class="role"
+            id="workerRole"
+            onclick="selectRole('worker')">
+
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+
+            <p>
+                Worker
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- MESSAGE -->
+
+    <div
+        id="message"
+        class="message">
+    </div>
+
+
+    <!-- FORM -->
+
+    <form
+        onsubmit="registerUser(event)"
+        id="registerForm">
+
+
+        <div class="form-row">
+
+
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Full name"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Phone Number
+                </label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Phone number"
+                        required>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label>
+                Email Address
+            </label>
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email address"
+                    required>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- WORKER SERVICE -->
+
+        <div
+            class="form-group"
+            id="workerServiceGroup"
+            style="display:none;">
+
+            <label>
+                Service Category
+            </label>
+
+            <div class="input-box">
+
+                <i class="fa-solid fa-briefcase"></i>
+
+                <select id="service">
+
+                    <option value="">
+                        Select service
+                    </option>
+
+                    <option>
+                        Electrician
+                    </option>
+
+                    <option>
+                        Plumber
+                    </option>
+
+                    <option>
+                        Carpenter
+                    </option>
+
+                    <option>
+                        Painter
+                    </option>
+
+                    <option>
+                        Domestic Helper
+                    </option>
+
+                    <option>
+                        Caregiver
+                    </option>
+
+                    <option>
+                        Driver
+                    </option>
+
+                    <option>
+                        Gardener
+                    </option>
+
+                    <option>
+                        Cleaner
+                    </option>
+
+                    <option>
+                        Technician
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-row">
+
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <div class="input-box password-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create password"
+                        required>
+
+                    <i
+                        class="fa-solid fa-eye toggle"
+                        onclick="togglePassword('password',this)">
+                    </i>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    Confirm Password
+                </label>
+
+                <div class="input-box password-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm password"
+                        required>
+
+                    <i
+                        class="fa-solid fa-eye toggle"
+                        onclick="togglePassword('confirmPassword',this)">
+                    </i>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="terms">
+
+            <input
+                type="checkbox"
+                id="terms"
+                required>
+
+            <label for="terms">
+
+                I agree to the
+                <a href="#">
+                    Terms of Service
+                </a>
+                and
+                <a href="#">
+                    Privacy Policy
+                </a>.
+
+            </label>
+
+        </div>
+
+
+
+        <button
+            type="submit"
+            class="register-btn">
+
+            <i class="fa-solid fa-user-plus"></i>
+
+            Create Account
+
+        </button>
+
+
+    </form>
+
+
+
+    <div class="login">
+
+        Already have an account?
+
+        <a href="login.html">
+            Login here
+        </a>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+    <p>
+        © 2026 CoopConnect AI — Empowering Cooperative Workers
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================
+ROLE
+========================= */
+
+let selectedRole =
+    "customer";
+
+
+function selectRole(role){
+
+    selectedRole =
+        role;
+
+
+    document
+        .querySelectorAll(
+            ".role"
+        )
+        .forEach(
+            item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    document
+        .getElementById(
+            role + "Role"
+        )
+        .classList.add(
+            "active"
+        );
+
+
+    const workerFields =
+        document
+        .getElementById(
+            "workerServiceGroup"
+        );
+
+
+    if(role === "worker"){
+
+        workerFields.style.display =
+            "block";
+
+        document
+            .getElementById(
+                "service"
+            )
+            .required =
+            true;
+
+    }
+    else{
+
+        workerFields.style.display =
+            "none";
+
+        document
+            .getElementById(
+                "service"
+            )
+            .required =
+            false;
+
+    }
+
+}
+
+
+/* =========================
+REGISTER
+========================= */
+
+function registerUser(event){
+
+    event.preventDefault();
+
+
+    const name =
+        document
+        .getElementById(
+            "name"
+        )
+        .value
+        .trim();
+
+
+    const phone =
+        document
+        .getElementById(
+            "phone"
+        )
+        .value
+        .trim();
+
+
+    const email =
+        document
+        .getElementById(
+            "email"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const password =
+        document
+        .getElementById(
+            "password"
+        )
+        .value;
+
+
+    const confirmPassword =
+        document
+        .getElementById(
+            "confirmPassword"
+        )
+        .value;
+
+
+    const service =
+        document
+        .getElementById(
+            "service"
+        )
+        .value;
+
+
+    /* PASSWORD CHECK */
+
+    if(password.length < 6){
+
+        showMessage(
+            "Password must contain at least 6 characters.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(password !== confirmPassword){
+
+        showMessage(
+            "Passwords do not match.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        selectedRole ===
+        "worker" &&
+        !service
+    ){
+
+        showMessage(
+            "Please select your service category.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /* GET EXISTING USERS */
+
+    let users =
+        JSON.parse(
+            localStorage.getItem(
+                "coopconnectUsers"
+            )
+        ) || [];
+
+
+    /* DUPLICATE EMAIL */
+
+    const existing =
+        users.find(
+            user =>
+                user.email === email
+        );
+
+
+    if(existing){
+
+        showMessage(
+            "An account with this email already exists.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    /* NEW USER */
+
+    const newUser = {
+
+        id:
+            "U" +
+            Date.now(),
+
+        name:
+            name,
+
+        phone:
+            phone,
+
+        email:
+            email,
+
+        password:
+            password,
+
+        role:
+            selectedRole,
+
+        service:
+            service || "",
+
+        status:
+            selectedRole === "worker"
+                ? "Pending"
+                : "Approved",
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    users.push(
+        newUser
+    );
+
+
+    localStorage.setItem(
+        "coopconnectUsers",
+        JSON.stringify(
+            users
+        )
+    );
+
+
+    /* SAVE WORKER */
+
+    if(
+        selectedRole ===
+        "worker"
+    ){
+
+        let workers =
+            JSON.parse(
+                localStorage.getItem(
+                    "coopconnectWorkers"
+                )
+            ) || [];
+
+
+        workers.push({
+
+            id:
+                "W" +
+                Date.now(),
+
+            name:
+                name,
+
+            service:
+                service,
+
+            status:
+                "Pending"
+
+        });
+
+
+        localStorage.setItem(
+            "coopconnectWorkers",
+            JSON.stringify(
+                workers
+            )
+        );
+
+    }
+
+
+    /* SAVE CUSTOMER */
+
+    if(
+        selectedRole ===
+        "customer"
+    ){
+
+        let customers =
+            JSON.parse(
+                localStorage.getItem(
+                    "coopconnectCustomers"
+                )
+            ) || [];
+
+
+        customers.push({
+
+            id:
+                "C" +
+                Date.now(),
+
+            name:
+                name,
+
+            phone:
+                phone,
+
+            email:
+                email
+
+        });
+
+
+        localStorage.setItem(
+            "coopconnectCustomers",
+            JSON.stringify(
+                customers
+            )
+        );
+
+    }
+
+
+    showMessage(
+        "Account created successfully! Redirecting to login...",
+        "success"
+    );
+
+
+    document
+        .getElementById(
+            "registerForm"
+        )
+        .reset();
+
+
+    setTimeout(
+        function(){
+
+            window.location.href =
+                "login.html";
+
+        },
+        1200
+    );
+
+}
+
+
+/* =========================
+PASSWORD TOGGLE
+========================= */
+
+function togglePassword(
+    id,
+    icon
+){
+
+    const input =
+        document
+        .getElementById(
+            id
+        );
+
+
+    if(
+        input.type ===
+        "password"
+    ){
+
+        input.type =
+            "text";
+
+        icon.classList.remove(
+            "fa-eye"
+        );
+
+        icon.classList.add(
+            "fa-eye-slash"
+        );
+
+    }
+    else{
+
+        input.type =
+            "password";
+
+        icon.classList.remove(
+            "fa-eye-slash"
+        );
+
+        icon.classList.add(
+            "fa-eye"
+        );
+
+    }
+
+}
+
+
+/* =========================
+MESSAGE
+========================= */
+
+function showMessage(
+    text,
+    type
+){
+
+    const message =
+        document
+        .getElementById(
+            "message"
+        );
+
+
+    message.innerText =
+        text;
+
+
+    message.className =
+        "message " +
+        type;
+
+}
+
+</script>
+
+</body>
+
+</html>

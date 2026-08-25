@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Find Workers | CoopConnect AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+body{
+    background:#f5f8f6;
+    color:#1d2939;
+    font-size:16px;
+    min-height:100vh;
+}
+
+/* NAVBAR */
+
+.navbar{
+    width:94%;
+    max-width:1450px;
+    margin:20px auto;
+    padding:14px 25px;
+    background:white;
+    border:1px solid #e3e9e5;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-icon{
+    width:45px;
+    height:45px;
+    background:linear-gradient(135deg,#14532d,#29a65c);
+    color:white;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+}
+
+.logo h2{
+    font-size:22px;
+}
+
+.logo h2 span{
+    color:#16803b;
+}
+
+.logo p{
+    font-size:11px;
+    color:#667085;
+}
+
+.back-btn{
+    padding:11px 18px;
+    background:white;
+    border:1px solid #d0d5dd;
+    border-radius:10px;
+    font-size:13px;
+    cursor:pointer;
+}
+
+/* MAIN */
+
+.main{
+    width:88%;
+    max-width:1300px;
+    margin:40px auto 70px;
+}
+
+.breadcrumb{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    font-size:12px;
+    color:#667085;
+    margin-bottom:12px;
+}
+
+.breadcrumb span{
+    color:#16803b;
+}
+
+.page-header{
+    margin-bottom:30px;
+}
+
+.page-header h1{
+    font-size:34px;
+    margin-bottom:7px;
+}
+
+.page-header p{
+    font-size:14px;
+    color:#667085;
+}
+
+/* SEARCH */
+
+.search-box{
+    background:white;
+    border:1px solid #e4e9e5;
+    border-radius:20px;
+    padding:25px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr auto;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.input-group label{
+    font-size:12px;
+    font-weight:600;
+    color:#475467;
+}
+
+.input-wrapper{
+    display:flex;
+    align-items:center;
+    border:1px solid #dfe5e1;
+    border-radius:10px;
+    padding:0 12px;
+}
+
+.input-wrapper i{
+    color:#16803b;
+}
+
+.input-wrapper input,
+.input-wrapper select{
+    width:100%;
+    border:none;
+    outline:none;
+    padding:12px 10px;
+    background:transparent;
+    font-size:13px;
+}
+
+.search-btn{
+    align-self:end;
+    padding:13px 22px;
+    background:#166534;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+/* LOCATION */
+
+.location-box{
+    background:#edf8f0;
+    border:1px solid #d4efdc;
+    border-radius:16px;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:35px;
+}
+
+.location-info{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.location-icon{
+    width:45px;
+    height:45px;
+    background:#d8f1df;
+    color:#16803b;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.location-info h3{
+    font-size:14px;
+}
+
+.location-info p{
+    font-size:12px;
+    color:#667085;
+}
+
+.detect-btn{
+    background:white;
+    color:#166534;
+    border:1px solid #bfe3c8;
+    padding:10px 16px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+/* LAYOUT */
+
+.content{
+    display:grid;
+    grid-template-columns:250px 1fr;
+    gap:25px;
+}
+
+/* FILTER */
+
+.filter-box{
+    background:white;
+    border:1px solid #e4e9e5;
+    border-radius:18px;
+    padding:22px;
+    height:max-content;
+}
+
+.filter-title{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.filter-title h3{
+    font-size:17px;
+}
+
+.clear{
+    color:#16803b;
+    font-size:11px;
+    cursor:pointer;
+}
+
+.filter-group{
+    border-top:1px solid #eef0ef;
+    padding-top:18px;
+    margin-top:18px;
+}
+
+.filter-group h4{
+    font-size:13px;
+    margin-bottom:12px;
+}
+
+.filter-option{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    margin:10px 0;
+    font-size:12px;
+    color:#667085;
+}
+
+.filter-option input{
+    accent-color:#16803b;
+}
+
+/* RESULTS */
+
+.results-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.results-header h2{
+    font-size:22px;
+}
+
+.results-header p{
+    font-size:12px;
+    color:#667085;
+}
+
+.sort{
+    padding:9px 12px;
+    border:1px solid #dfe5e1;
+    border-radius:8px;
+    background:white;
+    font-size:12px;
+}
+
+/* AI MATCH */
+
+.ai-match{
+    background:linear-gradient(135deg,#123b23,#19713b);
+    color:white;
+    padding:20px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.ai-match-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.ai-match-icon{
+    width:48px;
+    height:48px;
+    background:rgba(255,255,255,.15);
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.ai-match h3{
+    font-size:15px;
+}
+
+.ai-match p{
+    font-size:11px;
+    color:#d7f5df;
+}
+
+.match-score{
+    background:white;
+    color:#166534;
+    padding:10px 14px;
+    border-radius:10px;
+    font-size:12px;
+    font-weight:700;
+}
+
+/* WORKERS */
+
+.worker-list{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.worker-card{
+    background:white;
+    border:1px solid #e4e9e5;
+    border-radius:18px;
+    padding:22px;
+    display:grid;
+    grid-template-columns:75px 1fr auto;
+    gap:20px;
+    align-items:center;
+    transition:.3s;
+}
+
+.worker-card:hover{
+    border-color:#72c88b;
+    box-shadow:0 15px 35px rgba(22,101,52,.08);
+}
+
+.avatar{
+    width:70px;
+    height:70px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#dff5e5,#aee7bd);
+    color:#166534;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.worker-info h3{
+    font-size:17px;
+    margin-bottom:5px;
+}
+
+.worker-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:12px;
+    color:#667085;
+    margin-bottom:10px;
+}
+
+.worker-meta i{
+    color:#16803b;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+}
+
+.tag{
+    background:#edf8f0;
+    color:#166534;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:10px;
+}
+
+.worker-right{
+    text-align:right;
+}
+
+.rating{
+    color:#f59e0b;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.distance{
+    font-size:11px;
+    color:#667085;
+    margin-bottom:10px;
+}
+
+.available{
+    display:inline-block;
+    background:#e8f7ec;
+    color:#16803b;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:10px;
+    margin-bottom:10px;
+}
+
+.book-btn{
+    display:block;
+    width:100%;
+    background:#166534;
+    color:white;
+    padding:10px 16px;
+    border:none;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+/* TOAST */
+
+#toast{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    background:#166534;
+    color:white;
+    padding:14px 20px;
+    border-radius:10px;
+    font-size:13px;
+    display:none;
+    z-index:1000;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .search-box{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .content{
+        grid-template-columns:1fr;
+    }
+
+    .filter-box{
+        display:none;
+    }
+}
+
+@media(max-width:600px){
+
+    .main{
+        width:90%;
+    }
+
+    .logo p{
+        display:none;
+    }
+
+    .page-header h1{
+        font-size:28px;
+    }
+
+    .search-box{
+        grid-template-columns:1fr;
+    }
+
+    .location-box{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .worker-card{
+        grid-template-columns:1fr;
+    }
+
+    .worker-right{
+        text-align:left;
+    }
+
+    .ai-match{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            <i class="fa-solid fa-handshake"></i>
+        </div>
+
+        <div>
+            <h2>CoopConnect <span>AI</span></h2>
+            <p>Find Verified Cooperative Workers</p>
+        </div>
+
+    </div>
+
+    <button class="back-btn" onclick="goBack()">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back
+    </button>
+
+</nav>
+
+
+<main class="main">
+
+<div class="page-header">
+
+    <div class="breadcrumb">
+        Dashboard
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Find Workers</span>
+    </div>
+
+    <h1 id="pageTitle">Find the Right Worker</h1>
+
+    <p id="pageDescription">
+        Search verified cooperative workers based on your service requirement and location.
+    </p>
+
+</div>
+
+
+<div class="search-box">
+
+    <div class="input-group">
+
+        <label>Service Required</label>
+
+        <div class="input-wrapper">
+
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+
+            <select id="service" onchange="changeService()">
+                <option value="Electrician">Electrician</option>
+                <option value="Plumber">Plumber</option>
+                <option value="Carpenter">Carpenter</option>
+                <option value="Cleaner">Cleaner</option>
+                <option value="Painter">Painter</option>
+                <option value="Gardener">Gardener</option>
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <div class="input-group">
+
+        <label>Your Location</label>
+
+        <div class="input-wrapper">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <input
+                type="text"
+                id="locationInput"
+                value="Chennai"
+                placeholder="Enter area or city"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="input-group">
+
+        <label>Preferred Date</label>
+
+        <div class="input-wrapper">
+
+            <i class="fa-solid fa-calendar"></i>
+
+            <input type="date" id="serviceDate">
+
+        </div>
+
+    </div>
+
+
+    <button class="search-btn" onclick="searchWorkers()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        Search
+    </button>
+
+</div>
+
+
+<div class="location-box">
+
+    <div class="location-info">
+
+        <div class="location-icon">
+            <i class="fa-solid fa-location-crosshairs"></i>
+        </div>
+
+        <div>
+            <h3>Your Current Location</h3>
+            <p id="locationText">Chennai, Tamil Nadu</p>
+        </div>
+
+    </div>
+
+    <button class="detect-btn" onclick="detectLocation()">
+        <i class="fa-solid fa-location-arrow"></i>
+        Detect My Location
+    </button>
+
+</div>
+
+
+<div class="content">
+
+
+<!-- FILTERS -->
+
+<aside class="filter-box">
+
+    <div class="filter-title">
+
+        <h3>
+            <i class="fa-solid fa-sliders"></i>
+            Filters
+        </h3>
+
+        <span class="clear" onclick="clearFilters()">
+            Clear
+        </span>
+
+    </div>
+
+
+    <div class="filter-group">
+
+        <h4>Availability</h4>
+
+        <label class="filter-option">
+            <input type="checkbox">
+            Available Now
+        </label>
+
+        <label class="filter-option">
+            <input type="checkbox">
+            Today
+        </label>
+
+        <label class="filter-option">
+            <input type="checkbox">
+            This Week
+        </label>
+
+    </div>
+
+
+    <div class="filter-group">
+
+        <h4>Rating</h4>
+
+        <label class="filter-option">
+            <input type="checkbox">
+            4.5 & Above
+        </label>
+
+        <label class="filter-option">
+            <input type="checkbox">
+            4.0 & Above
+        </label>
+
+    </div>
+
+
+    <div class="filter-group">
+
+        <h4>Distance</h4>
+
+        <label class="filter-option">
+            <input type="checkbox">
+            Within 2 km
+        </label>
+
+        <label class="filter-option">
+            <input type="checkbox">
+            Within 5 km
+        </label>
+
+        <label class="filter-option">
+            <input type="checkbox">
+            Within 10 km
+        </label>
+
+    </div>
+
+</aside>
+
+
+
+<!-- RESULTS -->
+
+<section>
+
+    <div class="results-header">
+
+        <div>
+
+            <h2 id="resultHeading">
+                Available Workers
+            </h2>
+
+            <p id="resultText">
+                12 verified workers found near you
+            </p>
+
+        </div>
+
+
+        <select class="sort">
+            <option>AI Recommended</option>
+            <option>Nearest First</option>
+            <option>Highest Rated</option>
+        </select>
+
+    </div>
+
+
+    <div class="ai-match">
+
+        <div class="ai-match-left">
+
+            <div class="ai-match-icon">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+
+            <div>
+                <h3>AI Best Match</h3>
+                <p>
+                    Based on skills, rating, location and availability.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="match-score">
+            98% Match
+        </div>
+
+    </div>
+
+
+    <div class="worker-list" id="workerList">
+
+        <!-- Workers inserted using JavaScript -->
+
+    </div>
+
+</section>
+
+</div>
+
+</main>
+
+
+<div id="toast"></div>
+
+
+<script>
+
+/* WORKER DATA */
+
+const workers = {
+
+    Electrician:[
+        {
+            name:"Arun Kumar",
+            rating:"4.9 (126)",
+            distance:"1.2 km away",
+            availability:"Available Now",
+            skills:["Wiring","Repair","Installation"]
+        },
+        {
+            name:"Ravi Shankar",
+            rating:"4.7 (89)",
+            distance:"2.4 km away",
+            availability:"Available Today",
+            skills:["Switch Board","Fan Repair","Wiring"]
+        },
+        {
+            name:"Suresh Raj",
+            rating:"4.8 (104)",
+            distance:"3.1 km away",
+            availability:"Available Tomorrow",
+            skills:["Home Wiring","Lighting","Maintenance"]
+        }
+    ],
+
+    Plumber:[
+        {
+            name:"Murugan",
+            rating:"4.9 (145)",
+            distance:"1.5 km away",
+            availability:"Available Now",
+            skills:["Pipe Repair","Leak Fixing","Bathroom"]
+        },
+        {
+            name:"Karthik",
+            rating:"4.8 (98)",
+            distance:"2.8 km away",
+            availability:"Available Today",
+            skills:["Drainage","Water Tank","Pipe Fitting"]
+        },
+        {
+            name:"Prakash",
+            rating:"4.7 (76)",
+            distance:"4.1 km away",
+            availability:"Available Tomorrow",
+            skills:["Tap Repair","Bathroom","Kitchen Plumbing"]
+        }
+    ],
+
+    Carpenter:[
+        {
+            name:"Rajesh",
+            rating:"4.9 (112)",
+            distance:"1.8 km away",
+            availability:"Available Now",
+            skills:["Furniture","Woodwork","Repair"]
+        },
+        {
+            name:"Vijay",
+            rating:"4.8 (94)",
+            distance:"3.0 km away",
+            availability:"Available Today",
+            skills:["Door Repair","Tables","Cabinets"]
+        },
+        {
+            name:"Manoj",
+            rating:"4.7 (81)",
+            distance:"4.5 km away",
+            availability:"Available Tomorrow",
+            skills:["Custom Furniture","Wood Polish","Repair"]
+        }
+    ],
+
+    Cleaner:[
+        {
+            name:"Lakshmi",
+            rating:"4.9 (156)",
+            distance:"1.1 km away",
+            availability:"Available Now",
+            skills:["Home Cleaning","Kitchen","Deep Cleaning"]
+        },
+        {
+            name:"Priya",
+            rating:"4.8 (120)",
+            distance:"2.6 km away",
+            availability:"Available Today",
+            skills:["Office Cleaning","Home Cleaning","Sanitization"]
+        },
+        {
+            name:"Meena",
+            rating:"4.7 (85)",
+            distance:"3.8 km away",
+            availability:"Available Tomorrow",
+            skills:["Deep Cleaning","Bathroom","Floor Cleaning"]
+        }
+    ],
+
+    Painter:[
+        {
+            name:"Ganesh",
+            rating:"4.8 (91)",
+            distance:"2.0 km away",
+            availability:"Available Today",
+            skills:["Wall Painting","Interior","Exterior"]
+        }
+    ],
+
+    Gardener:[
+        {
+            name:"Selvam",
+            rating:"4.9 (78)",
+            distance:"2.5 km away",
+            availability:"Available Today",
+            skills:["Garden Care","Planting","Maintenance"]
+        }
+    ]
+
+};
+
+
+/* LOAD SELECTED SERVICE */
+
+window.onload = function(){
+
+    let selectedService =
+        localStorage.getItem("selectedService");
+
+    if(selectedService && workers[selectedService]){
+
+        document.getElementById("service").value =
+            selectedService;
+
+    }
+
+    loadWorkers(
+        document.getElementById("service").value
+    );
+
+};
+
+
+/* LOAD WORKERS */
+
+function loadWorkers(service){
+
+    const workerList =
+        document.getElementById("workerList");
+
+    const resultHeading =
+        document.getElementById("resultHeading");
+
+    const resultText =
+        document.getElementById("resultText");
+
+    workerList.innerHTML = "";
+
+    const serviceWorkers =
+        workers[service] || [];
+
+    resultHeading.innerText =
+        service + " Workers";
+
+    resultText.innerText =
+        serviceWorkers.length +
+        " verified " +
+        service.toLowerCase() +
+        " workers found near you";
+
+
+    serviceWorkers.forEach(function(worker){
+
+        const skills =
+            worker.skills.map(function(skill){
+
+                return '<span class="tag">' +
+                skill +
+                '</span>';
+
+            }).join("");
+
+
+        workerList.innerHTML += `
+
+        <div class="worker-card">
+
+            <div class="avatar">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+
+            <div class="worker-info">
+
+                <h3>${worker.name}</h3>
+
+                <div class="worker-meta">
+
+                    <span>
+                        <i class="fa-solid fa-briefcase"></i>
+                        ${service}
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-certificate"></i>
+                        Verified
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-building"></i>
+                        Labour Cooperative
+                    </span>
+
+                </div>
+
+
+                <div class="tags">
+                    ${skills}
+                </div>
+
+            </div>
+
+
+            <div class="worker-right">
+
+                <div class="rating">
+                    ★ ${worker.rating}
+                </div>
+
+                <div class="distance">
+                    <i class="fa-solid fa-location-dot"></i>
+                    ${worker.distance}
+                </div>
+
+                <div class="available">
+                    ● ${worker.availability}
+                </div>
+
+                <button class="book-btn"
+                onclick="bookWorker('${worker.name}','${service}')">
+
+                    Book Now
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* CHANGE SERVICE */
+
+function changeService(){
+
+    const service =
+        document.getElementById("service").value;
+
+    localStorage.setItem(
+        "selectedService",
+        service
+    );
+
+    loadWorkers(service);
+
+}
+
+
+/* SEARCH */
+
+function searchWorkers(){
+
+    const service =
+        document.getElementById("service").value;
+
+    const location =
+        document.getElementById("locationInput").value;
+
+    document.getElementById("locationText").innerText =
+        location || "Location not entered";
+
+    localStorage.setItem(
+        "selectedService",
+        service
+    );
+
+    localStorage.setItem(
+        "selectedLocation",
+        location
+    );
+
+    loadWorkers(service);
+
+    showToast(
+        "AI matched verified " +
+        service.toLowerCase() +
+        " workers near " +
+        location
+    );
+
+}
+
+
+/* BOOK WORKER */
+
+function bookWorker(worker,service){
+
+    localStorage.setItem(
+        "selectedWorker",
+        worker
+    );
+
+    localStorage.setItem(
+        "selectedService",
+        service
+    );
+
+    window.location.href =
+        "booking.html";
+
+}
+
+
+/* LOCATION DETECTION */
+
+function detectLocation(){
+
+    if(navigator.geolocation){
+
+        navigator.geolocation.getCurrentPosition(
+
+            function(position){
+
+                document.getElementById(
+                    "locationText"
+                ).innerText =
+                "Current location detected";
+
+                document.getElementById(
+                    "locationInput"
+                ).value =
+                "Current Location";
+
+                showToast(
+                    "Location detected successfully!"
+                );
+
+            },
+
+            function(){
+
+                showToast(
+                    "Location permission denied. Please enter manually."
+                );
+
+            }
+
+        );
+
+    }
+
+    else{
+
+        showToast(
+            "Geolocation is not supported by your browser."
+        );
+
+    }
+
+}
+
+
+/* CLEAR FILTERS */
+
+function clearFilters(){
+
+    document
+    .querySelectorAll(".filter-option input")
+    .forEach(function(box){
+
+        box.checked = false;
+
+    });
+
+    showToast("Filters cleared!");
+
+}
+
+
+/* BACK */
+
+function goBack(){
+
+    window.location.href =
+        "customer-dashboard.html";
+
+}
+
+
+/* TOAST */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.innerText = message;
+
+    toast.style.display = "block";
+
+    setTimeout(function(){
+
+        toast.style.display = "none";
+
+    },3000);
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Services | CoopConnect AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f6faf7;
+    color:#173421;
+}
+
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+    height:72px;
+    background:#103b23;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    background:white;
+    color:#166534;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo h2{
+    font-size:17px;
+}
+
+.logo span{
+    color:#8de9a4;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:#d8e9dd;
+    text-decoration:none;
+    font-size:9px;
+}
+
+.nav-links a:hover{
+    color:#8de9a4;
+}
+
+.nav-actions{
+    display:flex;
+    gap:8px;
+}
+
+.login-btn,
+.register-btn{
+    padding:9px 15px;
+    border-radius:7px;
+    text-decoration:none;
+    font-size:8px;
+}
+
+.login-btn{
+    color:white;
+    border:1px solid #70917a;
+}
+
+.register-btn{
+    background:#70d486;
+    color:#103b23;
+    font-weight:600;
+}
+
+
+/* =========================
+HEADER
+========================= */
+
+.page-header{
+    background:#103b23;
+    color:white;
+    text-align:center;
+    padding:55px 20px 70px;
+}
+
+.page-header h1{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.page-header p{
+    max-width:620px;
+    margin:auto;
+    color:#c8ddce;
+    font-size:9px;
+    line-height:1.8;
+}
+
+
+/* =========================
+SEARCH AREA
+========================= */
+
+.search-section{
+    width:86%;
+    max-width:1100px;
+    margin:-25px auto 0;
+    background:white;
+    border:1px solid #e0e8e2;
+    border-radius:14px;
+    padding:16px;
+    position:relative;
+    z-index:5;
+    box-shadow:0 8px 25px rgba(16,59,35,.08);
+}
+
+.search-row{
+    display:flex;
+    gap:10px;
+}
+
+.search-box{
+    flex:1;
+    position:relative;
+}
+
+.search-box i{
+    position:absolute;
+    left:12px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#667085;
+    font-size:10px;
+}
+
+.search-box input,
+.category-select{
+    width:100%;
+    height:42px;
+    border:1px solid #d6ded8;
+    border-radius:8px;
+    outline:none;
+    padding:0 12px 0 32px;
+    font-size:8px;
+    background:white;
+}
+
+.category-select{
+    width:180px;
+    padding-left:12px;
+}
+
+.search-box input:focus,
+.category-select:focus{
+    border-color:#2d7b48;
+}
+
+
+/* =========================
+SERVICES
+========================= */
+
+.container{
+    width:86%;
+    max-width:1100px;
+    margin:45px auto;
+}
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.section-heading h2{
+    font-size:17px;
+}
+
+.section-heading span{
+    color:#667085;
+    font-size:8px;
+}
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.service-card{
+    background:white;
+    border:1px solid #e0e8e2;
+    border-radius:13px;
+    padding:20px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.service-card:hover{
+    transform:translateY(-4px);
+    border-color:#5a9d6e;
+    box-shadow:0 10px 25px rgba(16,59,35,.08);
+}
+
+.service-card.selected{
+    border:2px solid #166534;
+    background:#f3fbf5;
+}
+
+.service-icon{
+    width:48px;
+    height:48px;
+    background:#edf8f0;
+    color:#166534;
+    border-radius:11px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    margin-bottom:13px;
+}
+
+.service-card h3{
+    font-size:11px;
+    margin-bottom:6px;
+}
+
+.service-card p{
+    color:#667085;
+    font-size:7px;
+    line-height:1.7;
+}
+
+.service-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:15px;
+}
+
+.service-count{
+    font-size:7px;
+    color:#667085;
+}
+
+.select-service{
+    color:#166534;
+    font-size:7px;
+    font-weight:600;
+}
+
+
+/* =========================
+WORKER SECTION
+========================= */
+
+.worker-section{
+    margin-top:55px;
+}
+
+.worker-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.worker-card{
+    background:white;
+    border:1px solid #e0e8e2;
+    border-radius:13px;
+    padding:18px;
+}
+
+.worker-top{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    margin-bottom:13px;
+}
+
+.worker-avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#dff3e4;
+    color:#166534;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+}
+
+.worker-name h3{
+    font-size:10px;
+}
+
+.worker-name p{
+    color:#667085;
+    font-size:7px;
+}
+
+.verified{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    color:#087443;
+    font-size:6px;
+    margin-top:3px;
+}
+
+.worker-info{
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid #edf0ee;
+    border-bottom:1px solid #edf0ee;
+    padding:10px 0;
+    margin-bottom:12px;
+}
+
+.worker-info div{
+    text-align:center;
+}
+
+.worker-info strong{
+    display:block;
+    font-size:9px;
+}
+
+.worker-info span{
+    font-size:6px;
+    color:#667085;
+}
+
+.worker-location{
+    color:#667085;
+    font-size:7px;
+    margin-bottom:12px;
+}
+
+.worker-location i{
+    color:#166534;
+    margin-right:4px;
+}
+
+.book-btn{
+    width:100%;
+    height:35px;
+    border:none;
+    background:#166534;
+    color:white;
+    border-radius:7px;
+    font-size:8px;
+    cursor:pointer;
+}
+
+.book-btn:hover{
+    background:#0f4b26;
+}
+
+
+/* =========================
+EMPTY
+========================= */
+
+.empty{
+    display:none;
+    text-align:center;
+    background:white;
+    border:1px solid #e0e8e2;
+    border-radius:13px;
+    padding:50px 20px;
+}
+
+.empty i{
+    font-size:30px;
+    color:#9ab4a1;
+    margin-bottom:12px;
+}
+
+.empty h3{
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.empty p{
+    color:#667085;
+    font-size:8px;
+}
+
+
+/* =========================
+BOOKING MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    z-index:2000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:480px;
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    position:relative;
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.close{
+    position:absolute;
+    right:17px;
+    top:15px;
+    border:none;
+    background:#f2f4f3;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.modal-box h2{
+    font-size:17px;
+    margin-bottom:5px;
+}
+
+.modal-subtitle{
+    color:#667085;
+    font-size:8px;
+    margin-bottom:20px;
+}
+
+.form-group{
+    margin-bottom:13px;
+}
+
+.form-group label{
+    display:block;
+    font-size:8px;
+    font-weight:600;
+    margin-bottom:5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    border:1px solid #d0d8d2;
+    border-radius:7px;
+    padding:10px;
+    outline:none;
+    font-size:8px;
+}
+
+.form-group textarea{
+    height:70px;
+    resize:none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:#166534;
+}
+
+.confirm-btn{
+    width:100%;
+    height:40px;
+    background:#166534;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:9px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+
+/* =========================
+SUCCESS
+========================= */
+
+.success{
+    display:none;
+    text-align:center;
+    padding:25px 5px;
+}
+
+.success.show{
+    display:block;
+}
+
+.success-icon{
+    width:65px;
+    height:65px;
+    background:#e8f8ed;
+    color:#087443;
+    border-radius:50%;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.success h2{
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.success p{
+    color:#667085;
+    font-size:8px;
+    line-height:1.7;
+}
+
+.success-id{
+    display:inline-block;
+    margin:15px 0;
+    padding:8px 12px;
+    background:#f1f7f3;
+    border-radius:6px;
+    color:#166534;
+    font-size:8px;
+    font-weight:600;
+}
+
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+    background:#0b2c1a;
+    color:white;
+    padding:30px 7%;
+    margin-top:70px;
+}
+
+.footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.footer-row p{
+    color:#a9c5b2;
+    font-size:7px;
+}
+
+.footer-links{
+    display:flex;
+    gap:18px;
+}
+
+.footer-links a{
+    color:#a9c5b2;
+    text-decoration:none;
+    font-size:7px;
+}
+
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+    .services-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .worker-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .search-row{
+        flex-direction:column;
+    }
+
+    .category-select{
+        width:100%;
+    }
+
+    .services-grid,
+    .worker-grid{
+        grid-template-columns:1fr;
+    }
+
+    .container,
+    .search-section{
+        width:92%;
+    }
+
+    .page-header h1{
+        font-size:26px;
+    }
+
+    .footer-row{
+        flex-direction:column;
+        gap:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            <i class="fa-solid fa-handshake"></i>
+        </div>
+
+        <h2>
+            CoopConnect <span>AI</span>
+        </h2>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="services.html">
+            Services
+        </a>
+
+        <a href="customer-dashboard.html">
+            Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="nav-actions">
+
+        <a
+            href="login.html"
+            class="login-btn">
+
+            Login
+
+        </a>
+
+        <a
+            href="register.html"
+            class="register-btn">
+
+            Register
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header class="page-header">
+
+    <h1>
+        Find the Right Service
+    </h1>
+
+    <p>
+
+        Connect with skilled and verified cooperative
+        workers for your household or institutional
+        service requirements.
+
+    </p>
+
+</header>
+
+
+<!-- =========================
+SEARCH
+========================= -->
+
+<section class="search-section">
+
+    <div class="search-row">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for a service or worker...">
+
+        </div>
+
+
+        <select
+            class="category-select"
+            id="categoryFilter">
+
+            <option value="all">
+                All Services
+            </option>
+
+            <option value="electrician">
+                Electrician
+            </option>
+
+            <option value="plumber">
+                Plumber
+            </option>
+
+            <option value="carpenter">
+                Carpenter
+            </option>
+
+            <option value="painter">
+                Painter
+            </option>
+
+            <option value="cleaner">
+                Cleaner
+            </option>
+
+            <option value="caregiver">
+                Caregiver
+            </option>
+
+            <option value="driver">
+                Driver
+            </option>
+
+            <option value="gardener">
+                Gardener
+            </option>
+
+        </select>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+SERVICES
+========================= -->
+
+<main class="container">
+
+
+    <section>
+
+        <div class="section-heading">
+
+            <h2>
+                Popular Services
+            </h2>
+
+            <span id="serviceResult">
+                8 services available
+            </span>
+
+        </div>
+
+
+        <div
+            class="services-grid"
+            id="servicesGrid">
+
+
+            <div
+                class="service-card"
+                data-category="electrician"
+                onclick="selectService('Electrician')">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+
+                <h3>
+                    Electrician
+                </h3>
+
+                <p>
+                    Wiring, installation, electrical
+                    repairs and maintenance.
+                </p>
+
+                <div class="service-bottom">
+
+                    <span class="service-count">
+                        24 workers
+                    </span>
+
+                    <span class="select-service">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="service-card"
+                data-category="plumber"
+                onclick="selectService('Plumber')">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-faucet"></i>
+                </div>
+
+                <h3>
+                    Plumber
+                </h3>
+
+                <p>
+                    Pipe repairs, water connections,
+                    leakage and maintenance.
+                </p>
+
+                <div class="service-bottom">
+
+                    <span class="service-count">
+                        19 workers
+                    </span>
+
+                    <span class="select-service">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="service-card"
+                data-category="carpenter"
+                onclick="selectService('Carpenter')">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-hammer"></i>
+                </div>
+
+                <h3>
+                    Carpenter
+                </h3>
+
+                <p>
+                    Furniture, woodwork, doors,
+                    repairs and custom work.
+                </p>
+
+                <div class="service-bottom">
+
+                    <span class="service-count">
+                        17 workers
+                    </span>
+
+                    <span class="select-service">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="service-card"
+                data-category="painter"
+                onclick="selectService('Painter')">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-paint-roller"></i>
+                </div>
+
+                <h3>
+                    Painter
+                </h3>
+
+                <p>
+                    Interior, exterior and
+                    decorative painting services.
+                </p>
+
+                <div class="service-bottom">
+
+                    <span class="service-count">
+                        15 workers
+                    </span>
+
+                    <span class="select-service">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="service-card"
+                data-category="cleaner"
+                onclick="selectService('Cleaner')">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-broom"></i>
+                </div>
+
+                <h3>
+                    Cleaner
+                </h3>
+
+                <p>
+                    Home, office and institutional
+                    cleaning services.
+                </p>
+
+                <div class="service-bottom">
+
+                    <span class="service-count">
+                        31 workers
+                    </span>
+
+                    <span class="select-service">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="service-card"
+                data-category="caregiver"
+                onclick="selectService('Caregiver')">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-user-nurse"></i>
+                </div>
+
+                <h3>
+                    Caregiver
+                </h3>
+
+                <p>
+                    Personal assistance and
+                    caregiving support services.
+                </p>
+
+                <div class="service-bottom">
+
+                    <span class="service-count">
+                        12 workers
+                    </span>
+
+                    <span class="select-service">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="service-card"
+                data-category="driver"
+                onclick="selectService('Driver')">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-car"></i>
+                </div>
+
+                <h3>
+                    Driver
+                </h3>
+
+                <p>
+                    Professional driving services
+                    for households and institutions.
+                </p>
+
+                <div class="service-bottom">
+
+                    <span class="service-count">
+                        14 workers
+                    </span>
+
+                    <span class="select-service">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="service-card"
+                data-category="gardener"
+                onclick="selectService('Gardener')">
+
+                <div class="service-icon">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+
+                <h3>
+                    Gardener
+                </h3>
+
+                <p>
+                    Garden maintenance,
+                    landscaping and plant care.
+                </p>
+
+                <div class="service-bottom">
+
+                    <span class="service-count">
+                        10 workers
+                    </span>
+
+                    <span class="select-service">
+                        Select →
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+    WORKERS
+    ========================= -->
+
+    <section
+        class="worker-section"
+        id="workers">
+
+        <div class="section-heading">
+
+            <h2>
+                Recommended Workers
+            </h2>
+
+            <span>
+                Verified cooperative workers
+            </span>
+
+        </div>
+
+
+        <div
+            class="worker-grid"
+            id="workerGrid">
+
+
+            <!-- WORKER 1 -->
+
+            <div
+                class="worker-card"
+                data-name="Ravi Kumar"
+                data-service="electrician">
+
+                <div class="worker-top">
+
+                    <div class="worker-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="worker-name">
+
+                        <h3>
+                            Ravi Kumar
+                        </h3>
+
+                        <p>
+                            Electrician
+                        </p>
+
+                        <div class="verified">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Verified Worker
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="worker-info">
+
+                    <div>
+
+                        <strong>
+                            4.9
+                        </strong>
+
+                        <span>
+                            Rating
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            8 yrs
+                        </strong>
+
+                        <span>
+                            Experience
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            126
+                        </strong>
+
+                        <span>
+                            Jobs
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="worker-location">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Chennai, Tamil Nadu
+
+                </p>
+
+
+                <button
+                    class="book-btn"
+                    onclick="openBooking('Ravi Kumar','Electrician')">
+
+                    Book Worker
+
+                </button>
+
+            </div>
+
+
+            <!-- WORKER 2 -->
+
+            <div
+                class="worker-card"
+                data-name="Suresh B"
+                data-service="plumber">
+
+                <div class="worker-top">
+
+                    <div class="worker-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="worker-name">
+
+                        <h3>
+                            Suresh B
+                        </h3>
+
+                        <p>
+                            Plumber
+                        </p>
+
+                        <div class="verified">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Verified Worker
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="worker-info">
+
+                    <div>
+
+                        <strong>
+                            4.8
+                        </strong>
+
+                        <span>
+                            Rating
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            6 yrs
+                        </strong>
+
+                        <span>
+                            Experience
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            98
+                        </strong>
+
+                        <span>
+                            Jobs
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="worker-location">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Chennai, Tamil Nadu
+
+                </p>
+
+
+                <button
+                    class="book-btn"
+                    onclick="openBooking('Suresh B','Plumber')">
+
+                    Book Worker
+
+                </button>
+
+            </div>
+
+
+            <!-- WORKER 3 -->
+
+            <div
+                class="worker-card"
+                data-name="Mohan Raj"
+                data-service="carpenter">
+
+                <div class="worker-top">
+
+                    <div class="worker-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="worker-name">
+
+                        <h3>
+                            Mohan Raj
+                        </h3>
+
+                        <p>
+                            Carpenter
+                        </p>
+
+                        <div class="verified">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Verified Worker
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="worker-info">
+
+                    <div>
+
+                        <strong>
+                            4.9
+                        </strong>
+
+                        <span>
+                            Rating
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            10 yrs
+                        </strong>
+
+                        <span>
+                            Experience
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            143
+                        </strong>
+
+                        <span>
+                            Jobs
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="worker-location">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Chennai, Tamil Nadu
+
+                </p>
+
+
+                <button
+                    class="book-btn"
+                    onclick="openBooking('Mohan Raj','Carpenter')">
+
+                    Book Worker
+
+                </button>
+
+            </div>
+
+
+            <!-- WORKER 4 -->
+
+            <div
+                class="worker-card"
+                data-name="Priya S"
+                data-service="cleaner">
+
+                <div class="worker-top">
+
+                    <div class="worker-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="worker-name">
+
+                        <h3>
+                            Priya S
+                        </h3>
+
+                        <p>
+                            Cleaner
+                        </p>
+
+                        <div class="verified">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Verified Worker
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="worker-info">
+
+                    <div>
+
+                        <strong>
+                            4.9
+                        </strong>
+
+                        <span>
+                            Rating
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            5 yrs
+                        </strong>
+
+                        <span>
+                            Experience
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            112
+                        </strong>
+
+                        <span>
+                            Jobs
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="worker-location">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Chennai, Tamil Nadu
+
+                </p>
+
+
+                <button
+                    class="book-btn"
+                    onclick="openBooking('Priya S','Cleaner')">
+
+                    Book Worker
+
+                </button>
+
+            </div>
+
+
+            <!-- WORKER 5 -->
+
+            <div
+                class="worker-card"
+                data-name="Arun Kumar"
+                data-service="driver">
+
+                <div class="worker-top">
+
+                    <div class="worker-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="worker-name">
+
+                        <h3>
+                            Arun Kumar
+                        </h3>
+
+                        <p>
+                            Driver
+                        </p>
+
+                        <div class="verified">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Verified Worker
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="worker-info">
+
+                    <div>
+
+                        <strong>
+                            4.8
+                        </strong>
+
+                        <span>
+                            Rating
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            7 yrs
+                        </strong>
+
+                        <span>
+                            Experience
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            86
+                        </strong>
+
+                        <span>
+                            Jobs
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="worker-location">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Chennai, Tamil Nadu
+
+                </p>
+
+
+                <button
+                    class="book-btn"
+                    onclick="openBooking('Arun Kumar','Driver')">
+
+                    Book Worker
+
+                </button>
+
+            </div>
+
+
+            <!-- WORKER 6 -->
+
+            <div
+                class="worker-card"
+                data-name="Kannan P"
+                data-service="gardener">
+
+                <div class="worker-top">
+
+                    <div class="worker-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="worker-name">
+
+                        <h3>
+                            Kannan P
+                        </h3>
+
+                        <p>
+                            Gardener
+                        </p>
+
+                        <div class="verified">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Verified Worker
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="worker-info">
+
+                    <div>
+
+                        <strong>
+                            4.7
+                        </strong>
+
+                        <span>
+                            Rating
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            5 yrs
+                        </strong>
+
+                        <span>
+                            Experience
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            72
+                        </strong>
+
+                        <span>
+                            Jobs
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p class="worker-location">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Chennai, Tamil Nadu
+
+                </p>
+
+
+                <button
+                    class="book-btn"
+                    onclick="openBooking('Kannan P','Gardener')">
+
+                    Book Worker
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+        <div
+            class="empty"
+            id="emptyResults">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <h3>
+                No workers found
+            </h3>
+
+            <p>
+                Try another service or search term.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+BOOKING MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="bookingModal">
+
+
+    <div class="modal-box">
+
+
+        <button
+            class="close"
+            onclick="closeBooking()">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+        <div id="bookingFormArea">
+
+            <h2>
+                Book a Service
+            </h2>
+
+            <p class="modal-subtitle">
+                Complete the details to send your service request.
+            </p>
+
+
+            <form id="bookingForm">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Selected Service
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bookingService"
+                        readonly>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Worker
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bookingWorker"
+                        readonly>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Service Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="bookingDate"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Preferred Time
+                    </label>
+
+                    <select
+                        id="bookingTime"
+                        required>
+
+                        <option value="">
+                            Select time
+                        </option>
+
+                        <option>
+                            08:00 AM - 10:00 AM
+                        </option>
+
+                        <option>
+                            10:00 AM - 12:00 PM
+                        </option>
+
+                        <option>
+                            12:00 PM - 02:00 PM
+                        </option>
+
+                        <option>
+                            02:00 PM - 04:00 PM
+                        </option>
+
+                        <option>
+                            04:00 PM - 06:00 PM
+                        </option>
+
+                        <option>
+                            06:00 PM - 08:00 PM
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Service Address
+                    </label>
+
+                    <input
+                        type="text"
+                        id="bookingAddress"
+                        placeholder="Enter your address"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Additional Requirements
+                    </label>
+
+                    <textarea
+                        id="bookingNotes"
+                        placeholder="Describe the work you need..."></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="confirm-btn">
+
+                    Confirm Booking
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- SUCCESS -->
+
+        <div
+            class="success"
+            id="bookingSuccess">
+
+            <div class="success-icon">
+
+                <i class="fa-solid fa-check"></i>
+
+            </div>
+
+            <h2>
+                Booking Submitted!
+            </h2>
+
+            <p>
+                Your service request has been created successfully.
+                The worker can now review your request.
+            </p>
+
+            <div
+                class="success-id"
+                id="bookingId">
+            </div>
+
+            <button
+                class="confirm-btn"
+                onclick="closeBooking()">
+
+                Done
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-row">
+
+        <p>
+            © 2026 CoopConnect AI. All rights reserved.
+        </p>
+
+        <div class="footer-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+            <a href="register.html">
+                Register
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+
+/* =========================
+SELECT SERVICE
+========================= */
+
+function selectService(service){
+
+    const cards =
+        document.querySelectorAll(
+            ".service-card"
+        );
+
+
+    cards.forEach(
+        card =>
+        card.classList.remove(
+            "selected"
+        )
+    );
+
+
+    const selected =
+        [...cards].find(
+            card =>
+            card
+            .querySelector("h3")
+            .innerText === service
+        );
+
+
+    if(selected){
+
+        selected.classList.add(
+            "selected"
+        );
+
+    }
+
+
+    const serviceName =
+        service.toLowerCase();
+
+
+    document
+        .getElementById(
+            "categoryFilter"
+        )
+        .value =
+        serviceName;
+
+
+    filterWorkers();
+
+
+    document
+        .getElementById(
+            "workers"
+        )
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================
+SEARCH
+========================= */
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        filterWorkers
+    );
+
+
+document
+    .getElementById("categoryFilter")
+    .addEventListener(
+        "change",
+        filterWorkers
+    );
+
+
+function filterWorkers(){
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const category =
+        document
+        .getElementById("categoryFilter")
+        .value;
+
+
+    const workers =
+        document.querySelectorAll(
+            ".worker-card"
+        );
+
+
+    let visible = 0;
+
+
+    workers.forEach(
+        worker => {
+
+            const name =
+                worker.dataset.name
+                .toLowerCase();
+
+
+            const service =
+                worker.dataset.service
+                .toLowerCase();
+
+
+            const matchesSearch =
+                !search ||
+                name.includes(search) ||
+                service.includes(search);
+
+
+            const matchesCategory =
+                category === "all" ||
+                service === category;
+
+
+            if(
+                matchesSearch &&
+                matchesCategory
+            ){
+
+                worker.style.display =
+                    "";
+
+                visible++;
+
+            }
+            else{
+
+                worker.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+
+    document
+        .getElementById(
+            "emptyResults"
+        )
+        .style.display =
+        visible === 0
+        ? "block"
+        : "none";
+
+}
+
+
+/* =========================
+OPEN BOOKING
+========================= */
+
+function openBooking(
+    worker,
+    service
+){
+
+    document
+        .getElementById(
+            "bookingWorker"
+        )
+        .value =
+        worker;
+
+
+    document
+        .getElementById(
+            "bookingService"
+        )
+        .value =
+        service;
+
+
+    document
+        .getElementById(
+            "bookingModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "bookingFormArea"
+        )
+        .style.display =
+        "block";
+
+
+    document
+        .getElementById(
+            "bookingSuccess"
+        )
+        .classList.remove(
+            "show"
+        );
+
+
+    const today =
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+    document
+        .getElementById(
+            "bookingDate"
+        )
+        .min =
+        today;
+
+}
+
+
+/* =========================
+CLOSE BOOKING
+========================= */
+
+function closeBooking(){
+
+    document
+        .getElementById(
+            "bookingModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* =========================
+BOOKING SUBMIT
+========================= */
+
+document
+    .getElementById(
+        "bookingForm"
+    )
+    .addEventListener(
+        "submit",
+        function(event){
+
+            event.preventDefault();
+
+
+            const booking = {
+
+                id:
+                "CC" +
+                Date.now()
+                .toString()
+                .slice(-6),
+
+                service:
+                document
+                .getElementById(
+                    "bookingService"
+                )
+                .value,
+
+                worker:
+                document
+                .getElementById(
+                    "bookingWorker"
+                )
+                .value,
+
+                date:
+                document
+                .getElementById(
+                    "bookingDate"
+                )
+                .value,
+
+                time:
+                document
+                .getElementById(
+                    "bookingTime"
+                )
+                .value,
+
+                address:
+                document
+                .getElementById(
+                    "bookingAddress"
+                )
+                .value,
+
+                notes:
+                document
+                .getElementById(
+                    "bookingNotes"
+                )
+                .value,
+
+                status:
+                "Pending",
+
+                createdAt:
+                new Date()
+                .toISOString()
+
+            };
+
+
+            let bookings =
+                JSON.parse(
+                    localStorage.getItem(
+                        "coopconnectBookings"
+                    )
+                ) || [];
+
+
+            bookings.push(
+                booking
+            );
+
+
+            localStorage.setItem(
+                "coopconnectBookings",
+                JSON.stringify(
+                    bookings
+                )
+            );
+
+
+            document
+                .getElementById(
+                    "bookingFormArea"
+                )
+                .style.display =
+                "none";
+
+
+            document
+                .getElementById(
+                    "bookingSuccess"
+                )
+                .classList.add(
+                    "show"
+                );
+
+
+            document
+                .getElementById(
+                    "bookingId"
+                )
+                .innerText =
+                "Booking ID: " +
+                booking.id;
+
+        }
+    );
+
+
+/* =========================
+CLOSE WHEN OUTSIDE
+========================= */
+
+document
+    .getElementById(
+        "bookingModal"
+    )
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(
+                event.target === this
+            ){
+
+                closeBooking();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

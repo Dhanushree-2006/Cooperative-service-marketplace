@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Worker Dashboard | CoopConnect AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+body{
+    background:#f5f8f6;
+    color:#173421;
+}
+
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+    height:70px;
+    background:#103b23;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    color:white;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.logo-icon{
+    width:40px;
+    height:40px;
+    background:white;
+    color:#166534;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo h2{
+    font-size:17px;
+}
+
+.logo span{
+    color:#8de9a4;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:#dcebe0;
+    text-decoration:none;
+    font-size:8px;
+}
+
+.nav-links a:hover{
+    color:#8de9a4;
+}
+
+.logout{
+    border:1px solid #769782;
+    padding:8px 13px;
+    border-radius:7px;
+    color:white;
+    text-decoration:none;
+    font-size:8px;
+}
+
+
+/* =========================
+MAIN
+========================= */
+
+.dashboard{
+    width:88%;
+    max-width:1200px;
+    margin:35px auto;
+}
+
+
+/* =========================
+WELCOME
+========================= */
+
+.welcome{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    font-size:24px;
+}
+
+.welcome p{
+    color:#667085;
+    font-size:8px;
+    margin-top:4px;
+}
+
+.status-online{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:#eaf8ee;
+    color:#087443;
+    padding:9px 13px;
+    border-radius:20px;
+    font-size:7px;
+    font-weight:600;
+}
+
+.status-dot{
+    width:7px;
+    height:7px;
+    background:#16a34a;
+    border-radius:50%;
+}
+
+
+/* =========================
+STATS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:white;
+    border:1px solid #e0e7e2;
+    border-radius:12px;
+    padding:18px;
+}
+
+.stat-icon{
+    width:38px;
+    height:38px;
+    border-radius:9px;
+    background:#edf8f0;
+    color:#166534;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:12px;
+}
+
+.stat-card h2{
+    font-size:20px;
+}
+
+.stat-card p{
+    color:#667085;
+    font-size:7px;
+    margin-top:2px;
+}
+
+
+/* =========================
+GRID
+========================= */
+
+.main-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+}
+
+
+/* =========================
+CARD
+========================= */
+
+.card{
+    background:white;
+    border:1px solid #e0e7e2;
+    border-radius:13px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:17px;
+}
+
+.card-header h2{
+    font-size:13px;
+}
+
+.card-header span{
+    color:#667085;
+    font-size:7px;
+}
+
+
+/* =========================
+REQUEST
+========================= */
+
+.request{
+    border:1px solid #e2e8e3;
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:11px;
+}
+
+.request:last-child{
+    margin-bottom:0;
+}
+
+.request-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.customer{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.customer-avatar{
+    width:40px;
+    height:40px;
+    background:#e1f2e5;
+    color:#166534;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.customer h3{
+    font-size:9px;
+}
+
+.customer p{
+    color:#667085;
+    font-size:6px;
+    margin-top:2px;
+}
+
+.request-status{
+    background:#fff7df;
+    color:#9a6700;
+    padding:5px 8px;
+    border-radius:12px;
+    font-size:6px;
+    font-weight:600;
+}
+
+.request-info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px solid #edf0ee;
+}
+
+.request-info div{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+
+.request-info span{
+    color:#667085;
+    font-size:6px;
+}
+
+.request-info strong{
+    font-size:7px;
+}
+
+.request-description{
+    margin-top:12px;
+    background:#f7faf8;
+    padding:9px;
+    border-radius:7px;
+    font-size:7px;
+    line-height:1.6;
+    color:#52605a;
+}
+
+.request-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:7px;
+    margin-top:12px;
+}
+
+.btn{
+    padding:7px 11px;
+    border-radius:6px;
+    border:1px solid #d0d9d2;
+    background:white;
+    font-size:6px;
+    cursor:pointer;
+}
+
+.btn.accept{
+    background:#166534;
+    color:white;
+    border-color:#166534;
+}
+
+.btn.reject{
+    color:#b42318;
+}
+
+
+/* =========================
+ACTIVE JOB
+========================= */
+
+.active-job{
+    border:1px solid #dbe8de;
+    background:#f7fbf8;
+    border-radius:10px;
+    padding:14px;
+}
+
+.active-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.active-header h3{
+    font-size:9px;
+}
+
+.active-header span{
+    background:#e8f8ed;
+    color:#087443;
+    padding:5px 8px;
+    border-radius:12px;
+    font-size:6px;
+}
+
+.progress{
+    height:6px;
+    background:#dce8df;
+    border-radius:10px;
+    margin:15px 0;
+    overflow:hidden;
+}
+
+.progress-bar{
+    width:65%;
+    height:100%;
+    background:#26934a;
+}
+
+.progress-text{
+    display:flex;
+    justify-content:space-between;
+    color:#667085;
+    font-size:6px;
+}
+
+
+/* =========================
+PROFILE
+========================= */
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding-bottom:15px;
+    border-bottom:1px solid #edf0ee;
+}
+
+.avatar{
+    width:52px;
+    height:52px;
+    background:#dff3e4;
+    color:#166534;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.profile h3{
+    font-size:11px;
+}
+
+.profile p{
+    color:#667085;
+    font-size:7px;
+    margin-top:3px;
+}
+
+.verified{
+    color:#087443;
+    font-size:6px;
+    margin-top:4px;
+}
+
+
+/* =========================
+PROFILE INFO
+========================= */
+
+.info{
+    padding-top:15px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    padding:9px 0;
+    border-bottom:1px solid #f0f2f1;
+}
+
+.info-row:last-child{
+    border:none;
+}
+
+.info-row span{
+    color:#667085;
+    font-size:7px;
+}
+
+.info-row strong{
+    font-size:7px;
+}
+
+
+/* =========================
+EARNINGS
+========================= */
+
+.earning{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid #edf0ee;
+}
+
+.earning:last-child{
+    border:none;
+}
+
+.earning span{
+    color:#667085;
+    font-size:7px;
+}
+
+.earning strong{
+    font-size:8px;
+}
+
+
+/* =========================
+QUICK ACTION
+========================= */
+
+.quick-action{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #edf0ee;
+    text-decoration:none;
+    color:#173421;
+    cursor:pointer;
+}
+
+.quick-action:last-child{
+    border:none;
+}
+
+.quick-icon{
+    width:34px;
+    height:34px;
+    border-radius:8px;
+    background:#edf8f0;
+    color:#166534;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.quick-action span{
+    font-size:7px;
+}
+
+.quick-action i:last-child{
+    margin-left:auto;
+    color:#98a49c;
+    font-size:7px;
+}
+
+
+/* =========================
+MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    align-items:center;
+    justify-content:center;
+    z-index:3000;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    background:white;
+    width:90%;
+    max-width:450px;
+    border-radius:14px;
+    padding:24px;
+}
+
+.modal-box h2{
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.modal-box p{
+    color:#667085;
+    font-size:8px;
+    line-height:1.7;
+}
+
+.close-btn{
+    float:right;
+    border:none;
+    background:#f1f3f2;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:20px;
+}
+
+.modal-actions button{
+    padding:8px 13px;
+    border-radius:6px;
+    border:1px solid #d1d9d3;
+    background:white;
+    font-size:7px;
+    cursor:pointer;
+}
+
+.modal-actions .confirm{
+    background:#166534;
+    color:white;
+    border-color:#166534;
+}
+
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+    background:#0b2c1a;
+    color:white;
+    padding:25px 7%;
+    margin-top:50px;
+}
+
+footer p{
+    color:#9eb8a7;
+    font-size:7px;
+    text-align:center;
+}
+
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .main-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .welcome{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .request-info{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            <i class="fa-solid fa-handshake"></i>
+        </div>
+
+        <h2>
+            CoopConnect <span>AI</span>
+        </h2>
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="services.html">
+            Services
+        </a>
+
+        <a href="worker-dashboard.html">
+            Dashboard
+        </a>
+
+    </div>
+
+
+    <a
+        href="login.html"
+        class="logout">
+
+        Logout
+
+    </a>
+
+</nav>
+
+
+
+<main class="dashboard">
+
+
+<!-- =========================
+WELCOME
+========================= -->
+
+<section class="welcome">
+
+    <div>
+
+        <h1>
+            Welcome, Ravi 👋
+        </h1>
+
+        <p>
+            Manage your service requests, jobs and earnings.
+        </p>
+
+    </div>
+
+
+    <div class="status-online">
+
+        <span class="status-dot"></span>
+
+        Available for Work
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+STATS
+========================= -->
+
+<section class="stats">
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-briefcase"></i>
+        </div>
+
+        <h2 id="totalJobs">
+            0
+        </h2>
+
+        <p>
+            Total Jobs
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-clock"></i>
+        </div>
+
+        <h2 id="pendingJobs">
+            0
+        </h2>
+
+        <p>
+            New Requests
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <h2 id="completedJobs">
+            0
+        </h2>
+
+        <p>
+            Completed Jobs
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <div class="stat-icon">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+        </div>
+
+        <h2 id="totalEarnings">
+            ₹0
+        </h2>
+
+        <p>
+            Total Earnings
+        </p>
+
+    </div>
+
+
+</section>
+
+
+
+<div class="main-grid">
+
+
+<!-- =========================
+LEFT COLUMN
+========================= -->
+
+<section>
+
+
+    <!-- NEW REQUESTS -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                New Service Requests
+            </h2>
+
+            <span id="requestCount">
+                0 requests
+            </span>
+
+        </div>
+
+
+        <div id="requestList"></div>
+
+    </div>
+
+
+
+    <!-- ACTIVE JOB -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                Active Job
+            </h2>
+
+        </div>
+
+
+        <div
+            class="active-job"
+            id="activeJob">
+
+            <div class="active-header">
+
+                <h3>
+                    No active job
+                </h3>
+
+                <span>
+                    Waiting
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    style="width:0%">
+                </div>
+
+            </div>
+
+            <div class="progress-text">
+
+                <span>
+                    Not Started
+                </span>
+
+                <span>
+                    0%
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================
+RIGHT COLUMN
+========================= -->
+
+<aside>
+
+
+    <!-- PROFILE -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                Worker Profile
+            </h2>
+
+            <span>
+                Verified
+            </span>
+
+        </div>
+
+
+        <div class="profile">
+
+            <div class="avatar">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Ravi Kumar
+                </h3>
+
+                <p>
+                    Electrician
+                </p>
+
+                <div class="verified">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Verified Cooperative Worker
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="info-row">
+
+                <span>
+                    Experience
+                </span>
+
+                <strong>
+                    8 Years
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Rating
+                </span>
+
+                <strong>
+                    ⭐ 4.9
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Location
+                </span>
+
+                <strong>
+                    Chennai
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Jobs Completed
+                </span>
+
+                <strong>
+                    126
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- EARNINGS -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                Earnings
+            </h2>
+
+        </div>
+
+
+        <div class="earning">
+
+            <span>
+                This Month
+            </span>
+
+            <strong id="monthEarnings">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <div class="earning">
+
+            <span>
+                This Week
+            </span>
+
+            <strong>
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <div class="earning">
+
+            <span>
+                Total
+            </span>
+
+            <strong id="sideTotalEarnings">
+                ₹0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h2>
+                Quick Actions
+            </h2>
+
+        </div>
+
+
+        <div
+            class="quick-action"
+            onclick="showProfileModal()">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-user-pen"></i>
+
+            </div>
+
+            <span>
+                Update Profile
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+
+
+        <div
+            class="quick-action"
+            onclick="toggleAvailability()">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-toggle-on"></i>
+
+            </div>
+
+            <span id="availabilityText">
+                Change Availability
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+
+
+        <div
+            class="quick-action"
+            onclick="showSupport()">
+
+            <div class="quick-icon">
+
+                <i class="fa-solid fa-headset"></i>
+
+            </div>
+
+            <span>
+                Contact Support
+            </span>
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </div>
+
+
+    </div>
+
+
+</aside>
+
+
+</div>
+
+</main>
+
+
+
+<!-- =========================
+JOB MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="jobModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close-btn"
+            onclick="closeModal('jobModal')">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <h2>
+            Job Request
+        </h2>
+
+        <p id="jobModalText"></p>
+
+        <div class="modal-actions">
+
+            <button
+                onclick="closeModal('jobModal')">
+
+                Close
+
+            </button>
+
+            <button
+                class="confirm"
+                id="acceptModalButton">
+
+                Accept Job
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+PROFILE MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="profileModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close-btn"
+            onclick="closeModal('profileModal')">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <h2>
+            Worker Profile
+        </h2>
+
+        <p>
+
+            Your profile is currently verified.
+
+            <br><br>
+
+            To update your name, service category,
+            experience or documents, contact the
+            cooperative administrator.
+
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                class="confirm"
+                onclick="closeModal('profileModal')">
+
+                Done
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+SUPPORT MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="supportModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close-btn"
+            onclick="closeModal('supportModal')">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <h2>
+            Worker Support
+        </h2>
+
+        <p>
+
+            Need help with a customer request?
+
+            <br><br>
+
+            Contact your cooperative support team.
+
+            <br><br>
+
+            Email:
+            support@coopconnect.example
+
+            <br>
+
+            Phone:
+            +91 XXXXX XXXXX
+
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                class="confirm"
+                onclick="closeModal('supportModal')">
+
+                Done
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<footer>
+
+    <p>
+        © 2026 CoopConnect AI — Empowering Cooperative Workers
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================
+GET BOOKINGS
+========================= */
+
+let bookings =
+    JSON.parse(
+        localStorage.getItem(
+            "coopconnectBookings"
+        )
+    ) || [];
+
+
+let selectedBookingId = null;
+
+
+/* =========================
+LOAD REQUESTS
+========================= */
+
+function loadRequests(){
+
+    const list =
+        document.getElementById(
+            "requestList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    /*
+       Only pending bookings are
+       displayed as new requests.
+    */
+
+    const pending =
+        bookings.filter(
+            booking =>
+                !booking.status ||
+                booking.status === "Pending"
+        );
+
+
+    document
+        .getElementById(
+            "requestCount"
+        )
+        .innerText =
+        pending.length +
+        (pending.length === 1
+            ? " request"
+            : " requests");
+
+
+    if(pending.length === 0){
+
+        list.innerHTML = `
+
+            <div style="
+                text-align:center;
+                padding:40px 15px;
+                color:#667085;
+            ">
+
+                <i
+                    class="fa-solid fa-inbox"
+                    style="
+                        font-size:28px;
+                        margin-bottom:12px;
+                    ">
+                </i>
+
+                <h3 style="
+                    font-size:11px;
+                    color:#173421;
+                    margin-bottom:6px;
+                ">
+                    No new requests
+                </h3>
+
+                <p style="
+                    font-size:7px;
+                ">
+                    New customer bookings will appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        updateStats();
+
+        return;
+
+    }
+
+
+    pending
+        .slice()
+        .reverse()
+        .forEach(
+            booking => {
+
+                const request =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                request.className =
+                    "request";
+
+
+                request.innerHTML = `
+
+                    <div class="request-top">
+
+                        <div class="customer">
+
+                            <div class="customer-avatar">
+
+                                <i class="fa-solid fa-user"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Customer Request
+                                </h3>
+
+                                <p>
+                                    ${escapeHTML(booking.service)}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <span class="request-status">
+                            New Request
+                        </span>
+
+                    </div>
+
+
+                    <div class="request-info">
+
+                        <div>
+
+                            <span>
+                                Booking ID
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(booking.id)}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Date
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(booking.date)}
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Time
+                            </span>
+
+                            <strong>
+                                ${escapeHTML(booking.time)}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="request-description">
+
+                        <strong>
+                            Location:
+                        </strong>
+
+                        ${escapeHTML(booking.address)}
+
+                        <br><br>
+
+                        <strong>
+                            Requirements:
+                        </strong>
+
+                        ${escapeHTML(
+                            booking.notes ||
+                            "No additional requirements"
+                        )}
+
+                    </div>
+
+
+                    <div class="request-actions">
+
+                        <button
+                            class="btn reject"
+                            onclick="rejectJob('${booking.id}')">
+
+                            Reject
+
+                        </button>
+
+
+                        <button
+                            class="btn"
+                            onclick="viewRequest('${booking.id}')">
+
+                            View Details
+
+                        </button>
+
+
+                        <button
+                            class="btn accept"
+                            onclick="acceptJob('${booking.id}')">
+
+                            Accept Job
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                list.appendChild(
+                    request
+                );
+
+            }
+        );
+
+
+    updateStats();
+
+}
+
+
+/* =========================
+STATS
+========================= */
+
+function updateStats(){
+
+    const total =
+        bookings.length;
+
+
+    const pending =
+        bookings.filter(
+            b =>
+                !b.status ||
+                b.status === "Pending"
+        ).length;
+
+
+    const completed =
+        bookings.filter(
+            b =>
+                b.status === "Completed"
+        ).length;
+
+
+    document
+        .getElementById(
+            "totalJobs"
+        )
+        .innerText =
+        total;
+
+
+    document
+        .getElementById(
+            "pendingJobs"
+        )
+        .innerText =
+        pending;
+
+
+    document
+        .getElementById(
+            "completedJobs"
+        )
+        .innerText =
+        completed;
+
+
+    /*
+       Demo earning:
+       ₹500 per completed booking.
+       This can later be connected
+       to the real payment system.
+    */
+
+    const earnings =
+        completed * 500;
+
+
+    document
+        .getElementById(
+            "totalEarnings"
+        )
+        .innerText =
+        "₹" +
+        earnings;
+
+
+    document
+        .getElementById(
+            "sideTotalEarnings"
+        )
+        .innerText =
+        "₹" +
+        earnings;
+
+
+    document
+        .getElementById(
+            "monthEarnings"
+        )
+        .innerText =
+        "₹" +
+        earnings;
+
+}
+
+
+/* =========================
+VIEW REQUEST
+========================= */
+
+function viewRequest(id){
+
+    const booking =
+        bookings.find(
+            b => b.id === id
+        );
+
+
+    if(!booking)
+        return;
+
+
+    selectedBookingId =
+        id;
+
+
+    document
+        .getElementById(
+            "jobModalText"
+        )
+        .innerHTML = `
+
+            <strong>
+                Booking ID:
+            </strong>
+
+            ${escapeHTML(booking.id)}
+
+            <br><br>
+
+            <strong>
+                Service:
+            </strong>
+
+            ${escapeHTML(booking.service)}
+
+            <br>
+
+            <strong>
+                Date:
+            </strong>
+
+            ${escapeHTML(booking.date)}
+
+            <br>
+
+            <strong>
+                Time:
+            </strong>
+
+            ${escapeHTML(booking.time)}
+
+            <br>
+
+            <strong>
+                Address:
+            </strong>
+
+            ${escapeHTML(booking.address)}
+
+            <br><br>
+
+            <strong>
+                Requirements:
+            </strong>
+
+            ${escapeHTML(
+                booking.notes ||
+                "No additional requirements"
+            )}
+
+        `;
+
+
+    document
+        .getElementById(
+            "jobModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    document
+        .getElementById(
+            "acceptModalButton"
+        )
+        .onclick =
+        function(){
+
+            acceptJob(
+                id
+            );
+
+        };
+
+}
+
+
+/* =========================
+ACCEPT JOB
+========================= */
+
+function acceptJob(id){
+
+    const index =
+        bookings.findIndex(
+            b => b.id === id
+        );
+
+
+    if(index === -1)
+        return;
+
+
+    bookings[index].status =
+        "Confirmed";
+
+
+    localStorage.setItem(
+        "coopconnectBookings",
+        JSON.stringify(
+            bookings
+        )
+    );
+
+
+    closeModal(
+        "jobModal"
+    );
+
+
+    loadRequests();
+
+
+    showActiveJob(
+        bookings[index]
+    );
+
+}
+
+
+/* =========================
+REJECT JOB
+========================= */
+
+function rejectJob(id){
+
+    const index =
+        bookings.findIndex(
+            b => b.id === id
+        );
+
+
+    if(index === -1)
+        return;
+
+
+    bookings[index].status =
+        "Cancelled";
+
+
+    localStorage.setItem(
+        "coopconnectBookings",
+        JSON.stringify(
+            bookings
+        )
+    );
+
+
+    loadRequests();
+
+}
+
+
+/* =========================
+ACTIVE JOB
+========================= */
+
+function showActiveJob(booking){
+
+    const active =
+        document
+        .getElementById(
+            "activeJob"
+        );
+
+
+    active.innerHTML = `
+
+        <div class="active-header">
+
+            <h3>
+                ${escapeHTML(booking.service)}
+            </h3>
+
+            <span>
+                Confirmed
+            </span>
+
+        </div>
+
+
+        <p style="
+            font-size:7px;
+            color:#667085;
+            margin-top:6px;
+        ">
+
+            Customer booking:
+            ${escapeHTML(booking.id)}
+
+        </p>
+
+
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                style="width:65%">
+            </div>
+
+        </div>
+
+
+        <div class="progress-text">
+
+            <span>
+                Job in Progress
+            </span>
+
+            <span>
+                65%
+            </span>
+
+        </div>
+
+
+        <button
+            class="btn accept"
+            style="
+                width:100%;
+                margin-top:15px;
+            "
+            onclick="completeJob('${booking.id}')">
+
+            Mark Job Completed
+
+        </button>
+
+    `;
+
+}
+
+
+/* =========================
+COMPLETE JOB
+========================= */
+
+function completeJob(id){
+
+    const index =
+        bookings.findIndex(
+            b => b.id === id
+        );
+
+
+    if(index === -1)
+        return;
+
+
+    bookings[index].status =
+        "Completed";
+
+
+    localStorage.setItem(
+        "coopconnectBookings",
+        JSON.stringify(
+            bookings
+        )
+    );
+
+
+    document
+        .getElementById(
+            "activeJob"
+        )
+        .innerHTML = `
+
+            <div class="active-header">
+
+                <h3>
+                    Job Completed
+                </h3>
+
+                <span>
+                    Completed
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    style="width:100%">
+                </div>
+
+            </div>
+
+            <div class="progress-text">
+
+                <span>
+                    Completed
+                </span>
+
+                <span>
+                    100%
+                </span>
+
+            </div>
+
+        `;
+
+
+    loadRequests();
+
+}
+
+
+/* =========================
+AVAILABILITY
+========================= */
+
+let available = true;
+
+
+function toggleAvailability(){
+
+    available =
+        !available;
+
+
+    const text =
+        document
+        .getElementById(
+            "availabilityText"
+        );
+
+
+    const status =
+        document
+        .querySelector(
+            ".status-online"
+        );
+
+
+    if(available){
+
+        text.innerText =
+            "Change Availability";
+
+
+        status.innerHTML = `
+
+            <span class="status-dot"></span>
+
+            Available for Work
+
+        `;
+
+    }
+    else{
+
+        text.innerText =
+            "Change Availability";
+
+
+        status.innerHTML = `
+
+            <span
+                class="status-dot"
+                style="background:#9ca3af">
+            </span>
+
+            Currently Unavailable
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+PROFILE MODAL
+========================= */
+
+function showProfileModal(){
+
+    document
+        .getElementById(
+            "profileModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+/* =========================
+SUPPORT
+========================= */
+
+function showSupport(){
+
+    document
+        .getElementById(
+            "supportModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+/* =========================
+CLOSE MODAL
+========================= */
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* =========================
+SAFE HTML
+========================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================
+START
+========================= */
+
+loadRequests();
+
+
+</script>
+
+</body>
+
+</html>
